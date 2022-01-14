@@ -22,7 +22,7 @@ contract VigneronRole {
 
   // Define a modifier that checks to see if msg.sender has the appropriate role
   modifier onlyVigneron() {
-    require(isVigneron(msg.sender), "Only a Farmer can call this function");
+    require(isVigneron(msg.sender), "Only a Vigneron can call this function");
     _;
   }
 

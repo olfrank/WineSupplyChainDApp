@@ -9,20 +9,20 @@ contract RetailerRole {
     using Roles for Roles.Role;
 
   // Define 2 events, one for Adding, and other for Removing
-  event AddedRetailer(address indexed account);
-  event RemovedRetailer(address indexed account);
+  event RetailerAdded(address indexed account);
+  event RetailerRemoved(address indexed account);
   
   // Define a struct 'retailers' by inheriting from 'Roles' library, struct Role
   Roles.Role private retailers;
 
   // In the constructor make the address that deploys this contract the 1st retailer
   constructor(){
-    addRetailer(msg.sender);
+    _addRetailer(msg.sender);
   }
 
   // Define a modifier that checks to see if msg.sender has the appropriate role
   modifier onlyRetailer() {
-    require(isRetailer(msg.sender), "Only a retailer can call this function");
+    require(isRetailer(msg.sender), "Only a Retailer can call this function");
     _;
   }
 
@@ -44,13 +44,13 @@ contract RetailerRole {
   // Define an internal function '_addRetailer' to add this role, called by 'addRetailer'
   function _addRetailer(address account) internal {
       retailers.add(account);
-      emit AddedRetailer(account);
+      emit RetailerAdded(account);
     
   }
 
   // Define an internal function '_removeRetailer' to remove this role, called by 'removeRetailer'
   function _removeRetailer(address account) internal {
     retailers.remove(account);
-    emit RemovedRetailer(account);
+    emit RetailerRemoved(account);
   }
 }
