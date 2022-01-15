@@ -4,7 +4,7 @@
 About
 -----
 
-Project: `Ethereum supply chain tracking DApp to authenticate the supply of wine from vigneron to consumer`
+Project: `Ethereum supply chain DApp to authenticate the supply and tracking of wine from vigneron to consumer`
 
 From Udacity:
 > Learn how to manage and audit blockchain product ownership as the product is transferred down the supply chain. 
@@ -13,9 +13,7 @@ Improve your notarization service with a smart contract to support transferring 
 Supporting courses:
 * Blockchain Architecture
 
-`WineSupplyChain` is a decentralized application used to track wine through the different stages of its supply chain; from vigneron to consumer. 
-This application tracks the cultivation (viticulture), fermenting (vinification) and barrel ageing process (élevage) before it is packed and shipped to the retailer for consumer purchase. 
-Information like the location of the vineyard (latitude & latitude coordinates), the age of the wine, and the flavour/aromatics are all publicly available for transparency during the various supply chain stages.
+`WineSupplyChain` is a decentralized application used to track wine through the different stages of its supply chain; from vigneron to consumer. This application tracks the cultivation (viticulture), fermenting (vinification) and barrel ageing process (élevage) before it is packed and shipped to the retailer for consumer purchase. Information like the location of the vineyard (latitude & latitude coordinates), the age of the wine, and the flavour/aromatics are all publicly available for transparency during the various supply chain stages.
 
 UML Diagrams
 ------------
