@@ -28,11 +28,11 @@ App = {
         App.sku = $("#sku").val();
         App.upc = $("#upc").val();
         App.ownerID = $("#ownerID").val();
-        App.originFarmerID = $("#originFarmerID").val();
-        App.originFarmName = $("#originFarmName").val();
-        App.originFarmInformation = $("#originFarmInformation").val();
-        App.originFarmLatitude = $("#originFarmLatitude").val();
-        App.originFarmLongitude = $("#originFarmLongitude").val();
+        App.originVigneronerID = $("#originVigneronID").val();
+        App.originVineyardName = $("#originVineyardName").val();
+        App.originVineyardInformation = $("#originVineyardInformation").val();
+        App.originVineyardLatitude = $("#originVineyardLatitude").val();
+        App.originVineyardLongitude = $("#originVineyardLongitude").val();
         App.productNotes = $("#productNotes").val();
         App.productPrice = $("#productPrice").val();
         App.distributorID = $("#distributorID").val();
@@ -43,11 +43,11 @@ App = {
             App.sku,
             App.upc,
             App.ownerID, 
-            App.originFarmerID, 
-            App.originFarmName, 
-            App.originFarmInformation, 
-            App.originFarmLatitude, 
-            App.originFarmLongitude, 
+            App.originVigneronID, 
+            App.originVineyardName, 
+            App.originVineyardInformation, 
+            App.originVineyardLatitude, 
+            App.originVineyardLongitude, 
             App.productNotes, 
             App.productPrice, 
             App.distributorID, 
@@ -66,7 +66,7 @@ App = {
                 await window.ethereum.enable();
             } catch (error) {
                 // User denied account access...
-                console.error("User denied account access")
+                console.error("User denied account access");
             }
         }
         // Legacy dapp browsers...

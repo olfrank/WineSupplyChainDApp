@@ -7,13 +7,31 @@
     <title>Fair Trade Coffee</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet"> 
 </head>
 
 <body>
     <div class="container">
         <h1 style="text-align: center;">High Quality Wine</h1>
         <hr>
-        <p style="text-align: center;">Prove the authenticity of wine using the Ethereum blockchain.</p>
+        <h3 style="text-align: center;">Prove the authenticity of wine using the Ethereum blockchain.</h3>
+    </div>
+
+    <div class = "sub-container">
+        <h3 style="text-align: center;"><u>Terminology</u></h3>
+        <ul>
+            <li><u>Viticulture:</u> the broad term encompassing the cultivation, protection, and harvest of grapes.</li>
+            <br>
+            <li><u>Vinification:</u> the conversion of grape juice or other vegetable extract into wine by fermentation.</li>
+            <br>
+            <li><u>Élevage:</u> the "bringing up" or "raising" of wine from its raw state immediately post-alcoholic fermentation to the point where it can be bottled.</li>
+            <br>
+            <li><u>Vineyard:</u> a plantation of grape-bearing vines, grown mainly for winemaking.</li>
+            <br>
+        </ul>
     </div>
 
     <div id="ftc-viticulture">
@@ -37,33 +55,33 @@
             
         </div>
         <div class=form-break></div>
-        <h2>Farm Details</h2>
+        <h2>Vineyard Details</h2>
         <div class="form-group">
-            Farmer ID
+            Vigneron ID
             <br>
-            <input type="text" id="originFarmerID" name="originFarmerID" placeholder="0xd371f..." size="50"><br>
-            Farm Name
+            <input type="text" id="originVigneronID" name="originVigneronID" placeholder="0xd371f..." size="50"><br>
+            Vineyard Name
             <br>
-            <input type="text" id="originFarmName" name="originFarmName" placeholder="Gillermo Moyano"><br>
-            Farm Information
+            <input type="text" id="originVineyardName" name="originVineyardName" placeholder="Zuccardi Valle de Uco"><br>
+            Vineyard Information
             <br>
-            <input type="text" id="originFarmInformation" name="originFarmInformation" placeholder="Zuccardi Valle de Uco"><br>
-            Farm Latitude
+            <input type="text" id="originVineyardInformation" name="originVineyardInformation" placeholder="Mendoza, Argentina"><br>
+            Vineyard Latitude
             <br>
-            <input type="text" id="originFarmLatitude" name="originFarmLatitude" placeholder="-33.77042210196439"><br>
-            Farm Longitude
+            <input type="text" id="originVineyardLatitude" name="originVineyardLatitude" placeholder="-33.77042210196439"><br>
+            Vineyard Longitude
             <br>
-            <input type="text" id="originFarmLongitude" name="originFarmLongitude" placeholder="-69.15480441534444"><br>
+            <input type="text" id="originVineyardLongitude" name="originVineyardLongitude" placeholder="-69.15480441534444"><br>
             <br>
-            <button class="btn-viticulture" id="button" type="button" data-id="1">Viticulture</button>
+            <button class="btn-viticulture" id="button" type="button" data-id="1">Viticulture*</button>
             <br>
             <p id='viticultureOutput' style="white-space: pre-line"></p>
             <br>
-            <button class="btn-viticulture" id="button" type="button" data-id="2">Vinify</button>
+            <button class="btn-viticulture" id="button" type="button" data-id="2">Vinify*</button>
             <br>
             <p id='vinifyOutput' style="white-space: pre-line"></p>
             <br>
-            <button class="btn-process" id="button" type="button" data-id="3">Elevage</button>
+            <button class="btn-process" id="button" type="button" data-id="3">Élevage*</button>
             <br>
             <p id='elevageOutput' style="white-space: pre-line"></p>
             <br>
@@ -81,22 +99,22 @@
         <div class="form-group">
             Product Notes
             <br>
-            <input type="text" id="productNotes" name="productNotes" value="Best beans for Espresso" size="60"><br>
+            <input type="text" id="productNotes" name="productNotes" placeholder="Beautifully balanced with aromatics of chocolate, berry, and tobacco." size="60"><br>
             Product Price
             <br>
-            <input type="number" id="productPrice" name="productPrice" value=1>ETH<br>
+            <input type="number" id="productPrice" name="productPrice" placeholder="10">ETH<br>
             Distributor ID
             <br>
-            <input type="text" id="distributorID" name="distributorID" value="0xf1b1bcd24dad92303dd9fe78be639f7bcf9c238d"
+            <input type="text" id="distributorID" name="distributorID" placeholder="0xf3765..."
                 size="50">
             <br>
             Retailer ID
             <br>
-            <input type="text" id="retailerID" name="retailerID" value="0x0fb2bfefd526966c87efa19f6693d50971763fc2"
+            <input type="text" id="retailerID" name="retailerID" placeholder="0x0fb2..."
                 size="50"><br>
             Distributor ID
             <br>
-            <input type="text" id="consumerID" name="consumerID" value="0x5d777e9127b28fb119e81a6304278a0a21bef1c4"
+            <input type="text" id="consumerID" name="consumerID" placeholder="0x5d77..."
                 size="50"><br>
             <br>
             <button class="btn-buy" id="button" type="button" data-id="6">Buy</button>
@@ -109,7 +127,7 @@
             <br>
             <button class="btn-receive" id="button" type="button" data-id="8">Receive</button>
             <br>
-            <p id='recieveOutput' style="white-space: pre-line"></p>
+            <p id='receiveOutput' style="white-space: pre-line"></p>
             <br>
             <button class="btn-purchase" id="button" type="button" data-id="9">Purchase</button>
             <br>

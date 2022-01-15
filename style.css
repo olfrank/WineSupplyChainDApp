@@ -1,14 +1,32 @@
 body {
-    background-color:rgb(165, 55, 55);
+    background-color:#58181F;
     padding: 2em;
-    font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
-    color: #212121;
+    /* font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'; */
+    font-family: 'Playfair Display', serif;
+    color: #dbd8d8;
+    /* #ddc8c8 */
   }
   .container {
     width: 80%;
     margin: 0 auto;
+    padding: 10px;
+    /* font-weight: bold; */
+  }
+  .sub-container{
+    width: 50%;
+    margin: 0 auto;
+    background-color: #6d4646;
+    border-radius: 5px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 17px;
+    font-weight: bold;
   }
   
+  h1{
+    font-size: 40px;
+  }
   
   .bold { 
     font-weight: bolder;
@@ -22,15 +40,21 @@ body {
   
   button {
       cursor: pointer;
-      background-color: #4CAF50;
+      background-color: #745d9b;
       border: none;
       color: white;
-      background-color: #00BCD4;
+      border-radius: 5px;
       font-size: 16px;
       padding: 16px 32px;
       text-decoration: none;
       margin: 4px 2px;
       cursor: pointer;
+      transition: 0.3s ease-in-out;
+      font-family: 'Playfair Display', serif;
+      font-weight: bold;
+  }
+  button:hover{
+    box-shadow: 0px 0px 35px 5px rgba(167, 62, 88, 0.856);
   }
   
   .sell { 
@@ -46,19 +70,22 @@ body {
   }
   
   .form-group {
-    background-color:#0097A7;
-    color:black;
+    color:#ebeeef;
     width:50%;
     padding:30px;
+    font-size: 17px;
     border-radius: 4px;
-    background-color: #f8f8f8;
+    background-color: #704444;
+    margin-bottom: 40px;
+    font-weight: bold;
   }
   
   .form-break {
-    background-color:#fff;
-    color:white;
+    background-color:#763636;
     width:100%;
     padding:5px;
+    border-radius: 20px;
+
   }
   
   .horizontal-rule {
