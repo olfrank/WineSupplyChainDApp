@@ -7,21 +7,20 @@
     <title>Fair Trade Coffee</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
-
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Noto+Serif&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
-        <h1 style="text-align: center;">High Quality Wine</h1>
-        <hr>
-        <h3 style="text-align: center;">Prove the authenticity of wine using the Ethereum blockchain.</h3>
+        <h1>Authentic Wines</h1>
+        <h2 style="text-align: center;">Prove the authenticity of wine using the Ethereum blockchain.</h2>
     </div>
 
-    <div class = "sub-container">
-        <h3 style="text-align: center;"><u>Terminology</u></h3>
+    <div data-aos="flip-up" data-aos-duration="1000"  class = "sub-container">
+        <h2 style="text-align: center;"><u>Terminology</u></h2>
         <ul>
             <li><u>Viticulture:</u> the broad term encompassing the cultivation, protection, and harvest of grapes.</li>
             <br>
@@ -35,17 +34,20 @@
     </div>
 
     <div id="ftc-viticulture">
-        <h2>Wine Details</h2>
-        <div class="form-group">
-            SKU
+        <h2 data-aos="fade-right" id="form-title">Wine Details</h2>
+        <div  data-aos="fade-right" data-aos-duration="1000" data-aos-offset="500" class="form-group">
+            Stock Keeping Unit (SKU)
             <br>
             <input class="input-field" type="number" id="sku" name="sku" placeholder="1"><br>
-            UPC
+            <br>
+            Universal Product Code (UPC)
             <br>
             <input type="number" id="upc" name="upc" placeholder="1"><br>
-            Current Owner ID
             <br>
-            <input type="text" id="ownerID" name="ownerID" size="50"><br>
+            Current Owner ID (Ethereum address)
+            <br>
+            <input type="text" id="ownerID" name="ownerID" placeholder="0xd3e67..." size="50"><br>
+            <br>
             <div class=button-div>
                 <button class="btn-fetchOne" id="button" type="button" data-id="10">Fetch Data 1</button>
                 <p id='fetchOutput1' style="white-space: pre-line"></p>
@@ -55,23 +57,28 @@
             
         </div>
         <div class=form-break></div>
-        <h2>Vineyard Details</h2>
-        <div class="form-group">
+        <h2 data-aos="fade-right" id="form-title">Vineyard Details</h2>
+        <div data-aos="fade-right" data-aos-duration="1000" data-aos-offset="500" class="form-group">
             Vigneron ID
             <br>
             <input type="text" id="originVigneronID" name="originVigneronID" placeholder="0xd371f..." size="50"><br>
+            <br>
             Vineyard Name
             <br>
             <input type="text" id="originVineyardName" name="originVineyardName" placeholder="Zuccardi Valle de Uco"><br>
+            <br>
             Vineyard Information
             <br>
             <input type="text" id="originVineyardInformation" name="originVineyardInformation" placeholder="Mendoza, Argentina"><br>
+            <br>
             Vineyard Latitude
             <br>
             <input type="text" id="originVineyardLatitude" name="originVineyardLatitude" placeholder="-33.77042210196439"><br>
+            <br>
             Vineyard Longitude
             <br>
             <input type="text" id="originVineyardLongitude" name="originVineyardLongitude" placeholder="-69.15480441534444"><br>
+            <br>
             <br>
             <button class="btn-viticulture" id="button" type="button" data-id="1">Viticulture*</button>
             <br>
@@ -95,27 +102,31 @@
             <br>
         </div>
         <div class=form-break></div>
-        <h2>Product Details</h2>
-        <div class="form-group">
+        <h2 data-aos="fade-right" id="form-title" >Product Details</h2>
+        <div data-aos="fade-right" data-aos-duration="1000" data-aos-offset="500" class="form-group">
             Product Notes
             <br>
             <input type="text" id="productNotes" name="productNotes" placeholder="Beautifully balanced with aromatics of chocolate, berry, and tobacco." size="60"><br>
+            <br>
             Product Price
             <br>
             <input type="number" id="productPrice" name="productPrice" placeholder="10">ETH<br>
+            <br>
+            Product Age
+            <br>
+            <input type="number" id="productAge" name="productAge" placeholder="18">Months<br>
+            <br>
             Distributor ID
             <br>
-            <input type="text" id="distributorID" name="distributorID" placeholder="0xf3765..."
-                size="50">
+            <input type="text" id="distributorID" name="distributorID" placeholder="0xf3765..." size="50"><br>
             <br>
             Retailer ID
             <br>
-            <input type="text" id="retailerID" name="retailerID" placeholder="0x0fb2..."
-                size="50"><br>
+            <input type="text" id="retailerID" name="retailerID" placeholder="0x0fb2..." size="50"><br>
+            <br>
             Distributor ID
             <br>
-            <input type="text" id="consumerID" name="consumerID" placeholder="0x5d77..."
-                size="50"><br>
+            <input type="text" id="consumerID" name="consumerID" placeholder="0x5d77..." size="50"><br>
             <br>
             <button class="btn-buy" id="button" type="button" data-id="6">Buy</button>
             <br>
@@ -135,22 +146,26 @@
             <br>
         </div>
         <div class=form-break></div>
-        <hr>
+        
     </div>
 
-    <h2>Transaction History</h2>
+    <h2 id="tx-title">Transaction History</h2>
     <div>
         <ul id="transactionHistory">
             <!-- Events will appear here from app.js -->
         </ul>
         <br>
-        <hr>
+        
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- <script src="js/web3.min.js"></script> -->
     <script src="js/truffle-contract.js"></script>
     <script src="js/app.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+      </script>
 </body>
 
 </html>

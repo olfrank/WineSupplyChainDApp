@@ -13,7 +13,7 @@ App = {
     originVineyardLongitude: null,
     productNotes: null,
     productPrice: 0,
-    productAge,
+    productAge: 0,
     distributorID: "0x0000000000000000000000000000000000000000",
     retailerID: "0x0000000000000000000000000000000000000000",
     consumerID: "0x0000000000000000000000000000000000000000",
@@ -34,6 +34,7 @@ App = {
         App.originVineyardLatitude = $("#originVineyardLatitude").val();
         App.originVineyardLongitude = $("#originVineyardLongitude").val();
         App.productNotes = $("#productNotes").val();
+        App.productAge = $("#productAge").val();
         App.productPrice = $("#productPrice").val();
         App.distributorID = $("#distributorID").val();
         App.retailerID = $("#retailerID").val();
@@ -49,6 +50,7 @@ App = {
             App.originVineyardLatitude, 
             App.originVineyardLongitude, 
             App.productNotes, 
+            App.productAge,
             App.productPrice, 
             App.distributorID, 
             App.retailerID, 
@@ -446,7 +448,7 @@ App = {
                 upc, 
                 productID, 
                 productAge, 
-                productNotes, 
+                productNotes,
                 productPrice, 
                 distributorID, 
                 retailerID, 

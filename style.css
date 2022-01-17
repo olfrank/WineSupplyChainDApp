@@ -1,21 +1,26 @@
 body {
     background-color:#58181F;
-    padding: 2em;
-    /* font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'; */
-    font-family: 'Playfair Display', serif;
+    font-family: 'EB Garamond', serif;
     color: #dbd8d8;
-    /* #ddc8c8 */
+    margin: auto;
   }
   .container {
-    width: 80%;
+    width: 100vw;
     margin: 0 auto;
     padding: 10px;
+    height: 100vh;
+    background-image: url("./images/vineyard.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #f3f1f1;
+
     /* font-weight: bold; */
   }
   .sub-container{
     width: 50%;
     margin: 0 auto;
     background-color: #6d4646;
+    margin-top: 8%;
     border-radius: 5px;
     padding: 10px;
     padding-left: 20px;
@@ -23,24 +28,43 @@ body {
     font-size: 17px;
     font-weight: bold;
   }
+
+  li{
+    font-size: 19px;;
+  }
   
   h1{
     font-size: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 18%;
   }
   
   .bold { 
     font-weight: bolder;
   }
-  
-  input {
-      width: 80%;
-      padding: 12px 20px;
-      margin: 10px 0;
+
+  input{
+    width: 80%;
+    padding: 12px 20px;
+    margin: 10px 0;
+    font-family: 'Noto Serif', serif;
+    background-color: rgb(23, 24, 23);
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #fff;
+    box-shadow: none;
+    border-color:none;
+    outline: none;
+  }
+  input:focus {
+    border: 3px solid rgb(206, 86, 86);
   }
   
   button {
       cursor: pointer;
-      background-color: #745d9b;
+      background-color: #9185a5;
       border: none;
       color: white;
       border-radius: 5px;
@@ -50,11 +74,11 @@ body {
       margin: 4px 2px;
       cursor: pointer;
       transition: 0.3s ease-in-out;
-      font-family: 'Playfair Display', serif;
+      font-family: 'EB Garamond', serif;
       font-weight: bold;
   }
   button:hover{
-    box-shadow: 0px 0px 35px 5px rgba(167, 62, 88, 0.856);
+    box-shadow: 0px 0px 35px 5px rgba(43, 42, 42, 0.856);
   }
   
   .sell { 
@@ -71,6 +95,8 @@ body {
   
   .form-group {
     color:#ebeeef;
+    margin-left: 10%;
+    
     width:50%;
     padding:30px;
     font-size: 17px;
@@ -78,6 +104,20 @@ body {
     background-color: #704444;
     margin-bottom: 40px;
     font-weight: bold;
+  }
+ 
+
+  .form-group:hover{
+    right: 5px;
+  }
+  #form-title{
+    margin-left: 10%;
+    margin-top: 5%;
+  }
+  #tx-title{
+    margin-left: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
   }
   
   .form-break {
