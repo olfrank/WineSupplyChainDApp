@@ -105,11 +105,7 @@ body {
     margin-bottom: 40px;
     font-weight: bold;
   }
- 
-
-  .form-group:hover{
-    right: 5px;
-  }
+  
   #form-title{
     margin-left: 10%;
     margin-top: 5%;
