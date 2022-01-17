@@ -43,10 +43,10 @@ Udacity Supporting courses:
 
 UML Diagrams
 ------------
-* [Activity](images/ActivityDiagram.jpeg)
-* [Sequence](images/SequenceDiagram.jpeg)
-* [State](images/StateDiagram.jpeg)
-* [Data Model (Class)](images/DataModelDiagram.jpeg)
+* [Activity](images/ActivityDiagramWine.png)
+* [Sequence](images/SequenceDiagramWine.png)
+* [State](images/StateDiagramWine.png)
+* [Data Model (Class)](images/DataModelDiagramWine.png)
 
 
 Code Organization
