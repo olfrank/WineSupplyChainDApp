@@ -22,6 +22,20 @@ Program Versions:
 - Node v14.16.0
 - Web3.js v1.5.3
 
+Requirements
+------------
+* Node
+* Node Package Manager (npm)
+* Truffle
+* Ganache
+* Infura
+
+Install & Run
+-------------
+1. `npm install`
+2. `truffle test`
+3. `npm run web`
+
 Udacity Supporting courses:
 * Blockchain Architecture
 
@@ -73,20 +87,20 @@ test/
 ├── SupplyChainTest.js
 └── VigneronRoleTest.js
 ```
+
 Core contract (Ownable.sol): This contract controls ownership and transfer of ownership.
 Implements: 
     * Ownable – Defines the owner of the contracts
-    * Secondary – Allows ownership of contract to be transferred 
 
 Base contract (SupplyChain.sol): This contract holds all common structs, events and base variables.
 Implements functions that track:
-	* Product ID
-	* Product UPC 
-	* Origin Information
-	* Origin Actor (Farmer ID, Farmer Name, Farmer Location etc)
-	* Misc. organisation information (e.g., Farmer Info)
-	* Longitude and Latitude of Origin Coordinates (e.g., Farmer’s long/lat)
-	* Product Notes
-	* Product Price
+* Product ID
+* Product UPC 
+* Origin Information
+* Origin Actor (Farmer ID, Farmer Name, Farmer Location etc)
+* Misc. organisation information (e.g., Farmer Info)
+* Longitude and Latitude of Origin Coordinates (e.g., Farmer’s long/lat)
+* Product Notes
+* Product Price
 
-Access Control (WineAccessControl.sol): This contract controls the access for each actor in the supply chain. Each actors role is distinct with no overlap in their acces abilities. 
+Access Control (WineAccessControl.sol): This contract controls the access for each actor in the supply chain. Each actors role is distinct with no overlap in their access abilities. 
