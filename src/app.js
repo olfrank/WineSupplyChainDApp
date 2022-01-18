@@ -19,7 +19,6 @@ App = {
     consumerID: "0x0000000000000000000000000000000000000000",
 
     init: async function () {
-        App.readForm();
         /// Setup access to blockchain
         return await App.initWeb3();
     },
@@ -40,22 +39,6 @@ App = {
         App.retailerID = $("#retailerID").val();
         App.consumerID = $("#consumerID").val();
 
-        console.log(
-            App.sku,
-            App.upc,
-            App.ownerID, 
-            App.originVigneronID, 
-            App.originVineyardName, 
-            App.originVineyardInformation, 
-            App.originVineyardLatitude, 
-            App.originVineyardLongitude, 
-            App.productNotes, 
-            App.productAge,
-            App.productPrice, 
-            App.distributorID, 
-            App.retailerID, 
-            App.consumerID
-        );
     },
 
     initWeb3: async function () {
@@ -139,6 +122,8 @@ App = {
 
         var processId = parseInt($(event.target).data('id'));
         console.log('processId',processId);
+
+        App.readForm();
 
         switch(processId) {
             case 1:
