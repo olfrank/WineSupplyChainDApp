@@ -18,19 +18,20 @@ Dependencies:
 - truffle-assertions: ^0.9.2  => Additional assertions that can be used to test Ethereum smart contracts inside Truffle tests.
 - dotenv: ^14.1.0 => Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env.
 
-Program Versions:
-- Truffle v5.4.28 (core: 5.4.28)
-- Solidity - 0.8.11 (solc-js)
-- Node v14.16.0
-- Web3.js v1.5.3
-
 Requirements
 ------------
 * Node
 * Node Package Manager (npm)
 * Truffle
-* Ganache
-* Infura
+
+Program Versions:
+------------
+- Truffle v5.4.28 (core: 5.4.28)
+- Solidity - 0.8.11 (solc-js)
+- Node v14.16.0
+- Web3.js v1.5.3
+
+
 
 Install, Test & Run
 -------------
@@ -51,9 +52,9 @@ Udacity Supporting courses:
 `WineSupplyChain` is a decentralized application used to track wine through the different stages of its supply chain; from vigneron to consumer. This application tracks the cultivation (viticulture), fermenting (vinification) and barrel ageing process (élevage) before it is packed and shipped to the retailer for consumer purchase. Information like the location of the vineyard (latitude & latitude coordinates), the age of the wine, and the flavour/aromatics are all publicly available for transparency during the various supply chain stages.
 
 WORKFLOW:
-1. You first land on the hero section as you open the web app. Scrolling down to 'Wine Details', you can simply add the universal product code (UPC) of the product you would like to track and then press either Fetch Data button. Pressing the Fetch Data 1 button will return information about the source of the product, i.e. the vineyard and vigneron details. Fetch Data two on the other hand will return information regarding the product, i.e. age, taste, price and the addresses of the different actors involved at the time of request. 
+1. You first land on the hero section as you open the web app. Scrolling down to 'Wine Details', you can simply add the universal product code (UPC) of the product you would like to track and then press either Fetch Data 1 or 2. Pressing the 'Fetch Data 1' button will return information about the source of the product, i.e. the vineyard and vigneron details. 'Fetch Data 2' on the other hand will return information regarding the product, i.e. age, taste, price and the addresses of the different actors involved at the time of request. 
 
-2. Different actors who are all restricted to their access and functionality, can mark an items stage as completed using the respective buttons after declaring the UPC in 'Wine Details'. For example, once the vigneron has finished cultivating the grapes for winemaking, he will proceed to mark that item as 'Viticultured', triggering an event visible in the Transaction History section at the bottom of the app. 
+2. Different actors involved in the supply chain are restricted to their respective duties (for example, a farmer cannot mark the item as received, that is down to the retailer), and the UPC must be declared/initialised in 'Wine Details'. An example of this process is as follows: once the vigneron has finished cultivating the grapes for winemaking, he will proceed to mark that item as 'Viticultured', triggering an event visible in the Transaction History section at the bottom of the app. The next stage after viticulture is vinification, another vigneron only function/event, and so on. 
 
 3. The flow of the supply chain is best visualised in the State UML Diagra which is linked below. 
 
