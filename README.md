@@ -52,6 +52,7 @@ Udacity Supporting courses:
 `WineSupplyChain` is a decentralized application used to track wine through the different stages of its supply chain; from vigneron to consumer. This application tracks the cultivation (viticulture), fermenting (vinification) and barrel ageing process (élevage) before it is packed and shipped to the retailer for consumer purchase. Information like the location of the vineyard (latitude & latitude coordinates), the age of the wine, and the flavour/aromatics are all publicly available for transparency during the various supply chain stages.
 
 WORKFLOW:
+-------------
 1. You first land on the hero section as you open the web app. Scrolling down to 'Wine Details', you can simply add the universal product code (UPC) of the product you would like to track and then press either Fetch Data 1 or 2. Pressing the 'Fetch Data 1' button will return information about the source of the product, i.e. the vineyard and vigneron details. 'Fetch Data 2' on the other hand will return information regarding the product, i.e. age, taste, price and the addresses of the different actors involved at the time of request. 
 
 2. Different actors involved in the supply chain are restricted to their respective duties (for example, a farmer cannot mark the item as received, that is down to the retailer), and the UPC must be declared/initialised in 'Wine Details'. An example of this process is as follows: once the vigneron has finished cultivating the grapes for winemaking, he will proceed to mark that item as 'Viticultured', triggering an event visible in the Transaction History section at the bottom of the app. The next stage after viticulture is vinification, another vigneron only function/event, and so on. 
@@ -111,7 +112,8 @@ test/
 ├── SupplyChainTest.js
 └── VigneronRoleTest.js
 ```
-
+Contracts
+-------------
 Core contract (Ownable.sol): This contract controls ownership and transfer of ownership.
 Implements: 
     * Ownable – Defines the owner of the contracts
