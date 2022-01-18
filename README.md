@@ -1,9 +1,11 @@
 # WineSupplyChainDApp
------
+
+
 ![wine](images/hero.png?raw=true)
 Contract Address:
 https://rinkeby.etherscan.io/address/0x6379DB319DB5E832A8ccA01b3f1A534020c0F17c 
 This contract was deployed to the Rinkeby test network. 
+Transaction Hash: 0x081dce2b9f367aaf296dc00464a4dc08da0d987d383ce8b6b5a0cafdb213758b 
 ----
 
 About
@@ -30,16 +32,37 @@ Requirements
 * Ganache
 * Infura
 
-Install & Run
+Install, Test & Run
 -------------
 1. `npm install`
-2. `truffle test`
-3. `npm run web`
+2. `truffle develop`
+3. `compile`
+4. `migrate` (if already migrated run `migrate --reset`)
+5. `test`
+
+To run the frontend on your local host run: `npm run dev`
+
+The frontend has been deployed using Fleek which is a website hosting service on IPFS, a decentralised server free from censorship and centralised gatekeepers. Truly trustless and permissionless. 
+The website link is: https://shiny-truth-6645.on.fleek.co/ 
 
 Udacity Supporting courses:
 * Blockchain Architecture
 
 `WineSupplyChain` is a decentralized application used to track wine through the different stages of its supply chain; from vigneron to consumer. This application tracks the cultivation (viticulture), fermenting (vinification) and barrel ageing process (élevage) before it is packed and shipped to the retailer for consumer purchase. Information like the location of the vineyard (latitude & latitude coordinates), the age of the wine, and the flavour/aromatics are all publicly available for transparency during the various supply chain stages.
+
+WORKFLOW:
+1. You first land on the hero section as you open the web app. Scrolling down to 'Wine Details', you can simply add the universal product code (UPC) of the product you would like to track and then press either Fetch Data button. Pressing the Fetch Data 1 button will return information about the source of the product, i.e. the vineyard and vigneron details. Fetch Data two on the other hand will return information regarding the product, i.e. age, taste, price and the addresses of the different actors involved at the time of request. 
+
+2. Different actors who are all restricted to their access and functionality, can mark an items stage as completed using the respective buttons after declaring the UPC in 'Wine Details'. For example, once the vigneron has finished cultivating the grapes for winemaking, he will proceed to mark that item as 'Viticultured', triggering an event visible in the Transaction History section at the bottom of the app. 
+
+3. The flow of the supply chain is best visualised in the State UML Diagra which is linked below. 
+
+4. Once a product is recieved by the retailer, the consumer is able to purchase their authentic wine. 
+
+
+
+
+
 
 UML Diagrams
 ------------
