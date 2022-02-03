@@ -1,18 +1,26 @@
 body {
-    background-color:#58181F;
+    background-color:#36141f;
+    background-image: url("./images/cork.jpeg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
+    /* filter: blur(10px); */
     font-family: 'EB Garamond', serif;
     color: #dbd8d8;
     margin: auto;
   }
+
+
   .container {
     width: 100vw;
     margin: 0 auto;
     padding: 10px;
     height: 100vh;
-    background-image: url("./images/vineyard.jpeg");
+    background-image: url("./images/wineOnBarrel.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
-    color: #f3f1f1;
+    position: relative;
+    color: #383838;
 
     /* font-weight: bold; */
   }
@@ -25,22 +33,54 @@ body {
     padding: 10px;
     padding-left: 20px;
     padding-right: 20px;
-    font-size: 17px;
+    font-size: 25px;
     font-weight: bold;
   }
 
   li{
-    font-size: 19px;;
+    font-size: 25px;;
   }
   
   h1{
-    font-size: 40px;
+    font-size: 50px;
     text-align: center;
     display: flex;
     justify-content: center;
-    margin-top: 18%;
+    margin-top: 10%;
   }
+  h2{
+    font-size: 40px;
+    /* color: #383838; */
+    font-weight: 900;
+  }
+
+  .mt-10{
+    margin-top: -30px;
+    font-size: 30px;
+  }
+
   
+
+  .arrow{
+    font-size: 110px;
+    color: #363636;;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+    animation: upDown 2s infinite;
+    position: relative;
+    margin-top: 32%;
+  }
+
+  @keyframes upDown{
+    0%{top:0;}
+    50%{top: -25px;}
+    100%{top: 0;}
+  }
+
+
   .bold { 
     font-weight: bolder;
   }
@@ -68,7 +108,7 @@ body {
       border: none;
       color: white;
       border-radius: 5px;
-      font-size: 16px;
+      font-size: 23px;
       padding: 16px 32px;
       text-decoration: none;
       margin: 4px 2px;
@@ -101,7 +141,7 @@ body {
     
     width:50%;
     padding:30px;
-    font-size: 17px;
+    font-size: 25px;
     border-radius: 4px;
     background-color: #704444;
     margin-bottom: 40px;
