@@ -159,10 +159,12 @@ body {
   }
   
   .form-break {
-    background-color:#763636;
+    background-color:#0e0d0d;
     width:100%;
     padding:5px;
     border-radius: 20px;
+    filter: blur(10px);
+    margin-top: 10%;;
 
   }
   

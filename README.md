@@ -1,7 +1,7 @@
 # WineSupplyChainDApp
 
 
-![wine](images/hero.png?raw=true)
+![wine](images/welcome.png?raw=true)
 Contract Address:
 https://rinkeby.etherscan.io/address/0x6379DB319DB5E832A8ccA01b3f1A534020c0F17c 
 This contract was deployed to the Rinkeby test network. 
