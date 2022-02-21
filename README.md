@@ -3,9 +3,11 @@
 
 ![wine](images/welcome.png?raw=true)
 Contract Address:
+`0x6379DB319DB5E832A8ccA01b3f1A534020c0F17c`
+Etherscan link:
 https://rinkeby.etherscan.io/address/0x6379DB319DB5E832A8ccA01b3f1A534020c0F17c 
 This contract was deployed to the Rinkeby test network. 
-Transaction Hash: 0x081dce2b9f367aaf296dc00464a4dc08da0d987d383ce8b6b5a0cafdb213758b 
+Transaction Hash: `0x081dce2b9f367aaf296dc00464a4dc08da0d987d383ce8b6b5a0cafdb213758b` 
 ----
 
 About
