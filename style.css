@@ -1,5 +1,5 @@
 body {
-    background-color:#222222;
+    background-color:#343638;
     /* background-image: url("./images/cork.jpeg");
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -71,6 +71,9 @@ body {
     text-align: center;
     
   }
+  h2{
+
+  }
 
   main{
     background: #363636;
@@ -95,8 +98,12 @@ body {
   }  */
 
   .mt-10{
-    margin-top: -30px;
+    margin-top: 20%;
     font-size: 30px;
+  }
+  .mt-5{
+    margin-top: 5%;
+    width: 90%;
   }
 
   
@@ -106,7 +113,8 @@ body {
     color: #242424;
     display: flex;
     margin: auto;
-    margin-top: 17%;
+    position: relative;
+    margin-top: 20%;
     justify-content: center;
     animation: upDown 2s infinite;
   }
@@ -129,6 +137,8 @@ body {
     box-shadow: none;
     border-color:none;
     outline: none;
+    margin-left: 2%;
+    margin-right: 2%;
   }
   input:focus {
     border: 3px solid rgb(206, 86, 86);
@@ -175,23 +185,57 @@ body {
     padding:30px;
     font-size: 25px;
     border-radius: 4px;
-    background-color: #242424;
+    background-color: #242424f0;
     margin-bottom: 40px;
     font-weight: 500;
     
   }
   .sub-container{
     width: 50%;
+    height: 400px;
     margin: 0 auto;
-    background-color: #6d4646;
+    /* background-color: #363636; */
     margin-top: 8%;
     border-radius: 5px;
     padding: 10px;
     padding-left: 20px;
     padding-right: 20px;
     font-size: 25px;
-  }
+    /* box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px; */
+    perspective: 900;
+    cursor: pointer;
   
+  }  
+  /* .sub-container:hover{
+    transform: scale(1.03);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 0px; */ 
+  .card{
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: all 1s ease-in-out;
+    width: 100%;
+  }
+  .card:hover {
+    transform: rotateY(180deg);
+  }
+  .card .side {
+    backface-visibility: hidden;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+  }
+  .card .back {
+    transform: rotateY(180deg);
+    background-color: #36363649;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+  }
+
+
   #form-title{
     margin: 0 auto;
     margin-top: 5%;
