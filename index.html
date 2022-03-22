@@ -41,27 +41,108 @@
     <div id="ftc-viticulture">
         <h2 data-aos="fade-right" id="form-title">Wine Details</h2>
         <div  data-aos="fade-right" data-aos-duration="1000" data-aos-offset="500" class="form-group">
-            Stock Keeping Unit (SKU)
-            <br>
-            <input class="input-field" type="number" id="sku" name="sku" placeholder="1"><br>
-            <br>
-            Universal Product Code (UPC)
-            <br>
-            <input type="number" id="upc" name="upc" placeholder="1"><br>
-            <br>
-            Current Owner ID (Ethereum address)
-            <br>
-            <input type="text" id="ownerID" name="ownerID" placeholder="0xd3e67..." size="50"><br>
-            <br>
-            <div class=button-div>
-                <button class="btn-fetchOne" id="button" type="button" data-id="10">Fetch Data 1</button>
-                <p id='fetchOutput1' style="white-space: pre-line"></p>
-                <button class="btn-fetchTwo" id="button" type="button" data-id="11">Fetch Data 2</button>
-                <p id='fetchOutput2' style="white-space: pre-line"></p>
+            <div>
+                <p>
+                    This section is for general querying of information on the progress 
+                    of a product in the supply chain according to its UPC. Simply input 
+                    the UPC of the product you wish to query data about.
+                </p>
             </div>
             
+            <br>
+                Universal Product Code (UPC)
+            <br>
+            <input type="number" id="upc" name="upc" class = "numInput" placeholder="1"><br>
+            <br>
+             
+            <div class=button-div>
+                <button class="btn-fetchOne" id="button" type="button" data-id="10">Fetch Vineyard Data</button>
+                <p id='fetchOutput1' style="white-space: pre-line"></p>
+                <button class="btn-fetchTwo" id="button" type="button" data-id="11">Fetch Product Data</button>
+                <p id='fetchOutput2' style="white-space: pre-line"></p>
+            </div>
+            <div class = "data-modal hidden" id="fetchData1" style="white-space: pre-line"></div>
+            <div class = "data-modal hidden" id="fetchData2" style="white-space: pre-line"></div>
+            
         </div>
-        <div class=form-break></div>
+
+
+        
+        <h2 data-aos="fade-right" id="form-title">Update Product Stage</h2>
+        <div class = "stage-container form-group" data-aos="fade-right" data-aos-duration="1000" data-aos-offset="500" >
+            <div>
+                <p>
+                    This section is for updating the products progress in the supply chain. 
+                    Each actor is restricted to their respective duties. The vigneron for example, 
+                    cannot mark an item as received, only the retailer is allowed to do so. 
+                    To update its stage enter the UPC of the product and continue to click your respective duty.
+                </p>
+            </div>
+            UPC
+            <input type="number" id="upc" name="upc" placeholder="1"><br>
+            <br><br>
+            
+            <div class = "actors">
+                Vigneron
+                <br><br>
+                <button class="btn-viticulture" id="button" type="button" data-id="1">Viticulture*</button>
+                <p id='viticultureOutput' style="white-space: pre-line"></p>
+
+                <button class="btn-viticulture" id="button" type="button" data-id="2">Vinify*</button>
+                <p id='vinifyOutput' style="white-space: pre-line"></p>
+        
+                <button class="btn-process" id="button" type="button" data-id="3">Élevage*</button>
+                <input type="number" id="productAge" name="productAge" class = "numInput" placeholder="18">Months
+                <p id='elevageOutput' style="white-space: pre-line"></p>
+
+                <button class="btn-pack" id="button" type="button" data-id="4">Item Packed</button>
+                <p id='packOutput' style="white-space: pre-line"></p>
+
+                <button class="btn-forsale" id="button" type="button" data-id="5">ForSale</button>
+                <input type="number" id="productPrice" name="productPrice" class = "numInput" placeholder="10" >ETH
+                <p id='forSaleOutput' style="white-space: pre-line"></p>
+            </div>
+            <br>
+            <div class = "actors">
+                Distributor
+                <br><br>
+                <button class="btn-ship" id="button" type="button" data-id="7">Item Shipped</button>
+                <p id='shipOutput' style="white-space: pre-line"></p>
+            </div>
+            <br>
+            <div class = "actors">
+                Retailer
+                <br><br>
+                <button class="btn-buy" id="button" type="button" data-id="6">Buy Item</button>
+                <p id='buyOutput' style="white-space: pre-line"></p>
+
+                <button class="btn-receive" id="button" type="button" data-id="8">Item Recieved</button>
+                <p id='receiveOutput' style="white-space: pre-line"></p>
+            </div>
+            <br>
+            <div class = "actors">
+                Consumer
+                <br><br>
+                <button class="btn-purchase" id="button" type="button" data-id="9">Purchase Item</button>
+                <p id='purchaseOutput' style="white-space: pre-line"></p>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- <div class=form-break></div>
         <h2 data-aos="fade-right" id="form-title">Vineyard Details</h2>
         <div data-aos="fade-right" data-aos-duration="1000" data-aos-offset="500" class="form-group">
             Vigneron ID
@@ -97,9 +178,7 @@
             <br>
             <p id='elevageOutput' style="white-space: pre-line"></p>
             <br>
-            <button class="btn-pack" id="button" type="button" data-id="4">Pack</button>
-            <br>
-            <p id='packOutput' style="white-space: pre-line"></p>
+            
             <br>
             <button class="btn-forsale" id="button" type="button" data-id="5">ForSale</button>
             <br>
@@ -152,7 +231,7 @@
         </div>
         <div class=form-break></div>
         
-    </div>
+    </div> -->
 
     <h2 id="tx-title">Transaction History</h2>
     <div>
@@ -174,3 +253,13 @@
 </body>
 
 </html>
+
+
+   <!-- Current Owner ID (Ethereum address)
+            <br>
+            <input type="text" id="ownerID" name="ownerID" placeholder="0xd3e67..." size="50"><br>
+            <br> -->
+
+                <!-- Stock Keeping Unit (SKU)
+            <br>
+            <input class="input-field" type="number" id="sku" name="sku" placeholder="1"><br> -->

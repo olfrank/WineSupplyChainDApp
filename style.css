@@ -1,11 +1,12 @@
 body {
-    background-color:#36141f;
-    background-image: url("./images/cork.jpeg");
+    background-color:#222222;
+    /* background-image: url("./images/cork.jpeg");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center; 
+    background-position: center;  */
     /* filter: blur(10px); */
     font-family: 'EB Garamond', serif;
+    font-weight: 500;
     color: #dbd8d8;
     margin: auto;
   }
@@ -21,8 +22,6 @@ body {
     background-size: cover;
     position: relative;
     color: #383838;
-
-    /* font-weight: bold; */
   }
   .sub-container{
     width: 50%;
@@ -34,7 +33,6 @@ body {
     padding-left: 20px;
     padding-right: 20px;
     font-size: 25px;
-    font-weight: bold;
   }
 
   li{
@@ -51,7 +49,7 @@ body {
   h2{
     font-size: 40px;
     /* color: #383838; */
-    font-weight: 900;
+    
   }
 
   .mt-10{
@@ -78,11 +76,6 @@ body {
     0%{top:0;}
     50%{top: -25px;}
     100%{top: 0;}
-  }
-
-
-  .bold { 
-    font-weight: bolder;
   }
 
   input{
@@ -112,16 +105,16 @@ body {
       padding: 16px 32px;
       text-decoration: none;
       margin: 4px 2px;
-      cursor: pointer;
-      transition: 0.3s ease-in-out;
       font-family: 'EB Garamond', serif;
-      font-weight: bold;
+      font-weight: 500;
   }
   button:hover{
     box-shadow: 0px 0px 35px 5px rgba(43, 42, 42, 0.856);
     transform: scale(1.03);
     transition: all 0.3s ease-in-out;
   }
+
+
   
   .sell { 
     background-color: white;
@@ -145,7 +138,7 @@ body {
     border-radius: 4px;
     background-color: #704444;
     margin-bottom: 40px;
-    font-weight: bold;
+    font-weight: 500;
   }
   
   #form-title{
@@ -171,4 +164,34 @@ body {
   .horizontal-rule {
     background-color:#BDBDBD;
   }
+
+
+  .data-modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    z-index: 1000;
+    transition: 0.3s;
+  }
+  .hidden{
+    display: none;
+  }
+
+  .actors{
+    border-radius: 5px;
+    background-color: #13121269;
+    padding: 15px;
+
+  }
   
+  .numInput{
+    width: 20%;
+    font-size: 18px;
+  }

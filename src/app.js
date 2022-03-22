@@ -403,7 +403,7 @@ App = {
                 originVineyardLatitude, 
                 originVineyardLongitude] = result;
 
-            fetchOutput1 = `
+            let fetchOutput1 = `
                 SKU: ${sku}
                 UPC: ${upc}
                 Owner ID: ${ownerID}
@@ -413,14 +413,15 @@ App = {
                 Vineyard Latitude: ${originVineyardLatitude}
                 Vineyard Longitude: ${originVineyardLongitude}
             `
-          $("#fetchOutput1").text(fetchOutput1);
+          $("#fetchData1").text(fetchOutput1);
+          $("#fetchData2").removeClass('hidden');
           console.log('fetchItemBufferOne', result);
         }).catch(function(err) {
             fetchError1 = `
                 Could not fetch data.
                 An error occurred - see console.log for details
             `
-            $("#fetchOutput1").text(fetchError1);
+            $("#fetchData1").text(fetchError1);
           console.log(err.message);
         });
     },
@@ -450,14 +451,15 @@ App = {
                 Retailer ID: ${retailerID}
                 Consumer ID: ${consumerID}
             `;
-          $("#fetchOutput").text(fetchOutput2);
+          $("#fetchData2").text(fetchOutput2);
+          $("#fetchData2").removeClass('hidden');
           console.log('fetchItemBufferTwo', result);
         }).catch(function(err) {
             fetchError2 = `
                 Could not fetch data.
                 An error occurred - see console.log for details.
             `
-            $("#fetchOutput").text(fetchError2);
+            $("#fetchData2").text(fetchError2);
           console.log(err.message);
         });
     },
