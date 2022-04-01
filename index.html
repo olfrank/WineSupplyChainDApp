@@ -109,14 +109,14 @@
                 </p>
             </div>
             UPC
-            <input type="number" id="upc" name="upc" placeholder="1"><br>
+            <input type="number" class ="small" id="upc" name="upc" placeholder="1"><br>
             <br><br>
             
-            <div class = "actors">
-                Vigneron
+            <div align="center" class = "actors">
+                <h3 align="center">Vigneron</h3>
                 <br><br>
                 <button class="btn-viticulture" id="button" type="button" data-id="1">Viticulture*</button>
-                <input type="number" id="upcVini" placeholder="UPC">
+                <input type="number" class ="small" id="upcVini" placeholder="UPC">
                 <input type="text" id="nameVineyard" placeholder="Vineyard Name">
                 <input type="text" id="infoVineyard" placeholder="Information About Vinyard, e.g., Country/Region">
                 <input type="text" id="latVineyard" placeholder="Latitude of Vineyard">
@@ -140,29 +140,30 @@
                 <p id='forSaleOutput' style="white-space: pre-line"></p>
             </div>
             <br>
-            <div class = "actors">
-                Distributor
+            <div align="center" class = "actors">
+                <h3 align="center">Distributor</h3> 
                 <br><br>
                 <button class="btn-ship" id="button" type="button" data-id="7">Item Shipped</button>
                 <p id='shipOutput' style="white-space: pre-line"></p>
             </div>
             <br>
-            <div class = "actors">
-                Retailer
+            <div align="center" class = "actors">
+                <h3 align="center">Retailer</h3> 
                 <br><br>
                 <button class="btn-buy" id="button" type="button" data-id="6">Buy Item</button>
-                <input type="number" id="buyItemUPC" placeholder="UPC">
+                <input type="number" class ="small" id="buyItemUPC" placeholder="UPC">
                 <p id='buyOutput' style="white-space: pre-line"></p>
 
                 <button class="btn-receive" id="button" type="button" data-id="8">Item Recieved</button>
                 <p id='receiveOutput' style="white-space: pre-line"></p>
             </div>
             <br>
-            <div class = "actors">
-                Consumer
+            <div align="center" class = "actors">
+                <h3 align="center">Consumer</h3> 
                 <br><br>
+                
                 <button class="btn-purchase" id="button" type="button" data-id="9">Purchase Item</button>
-                <input type="number" id="purchaseItemUPC" placeholder="UPC">
+                <input type="number" class ="small" id="purchaseItemUPC" placeholder="UPC">
                 <p id='purchaseOutput' style="white-space: pre-line"></p>
             </div>
 
@@ -180,22 +181,32 @@
                 </select>
                 <br><br>
 
+                <div class = "actors">
                 Add Address 
                 <p id="addResult"></p>
                 <input type="text" id="addActor" placeholder="0x9602...A88f">
                 <button type="button" id="btn-addActor" data-id="13">Add</button>
+                </div>
                 <br><br>
 
+                <div class = "actors">
                 Remove Address 
                 <p id= "removeResult"></p>
                 <input type="text" id="addActor" placeholder="0x9602...A88f">
                 <button type="button" id="btn-removeActor" data-id="14">Remove</button>
+                </div>
                 <br><br>
+                
 
+                <div class = "actors">
                 Check Address 
+                <br><br>
                 <input type="text" id="checkRole" placeholder="0x9602...A88f">
                 <button type="button" id="btn-has-role" data-id="15">Check</button>
                 <input type="text" disabled="true" id="hasRole">
+
+                </div>
+                
                 
 
             </div>

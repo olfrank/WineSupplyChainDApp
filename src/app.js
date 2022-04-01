@@ -60,7 +60,7 @@ App = {
         }
         // If no injected web3 instance is detected, fall back to Ganache
         else {
-            App.web3Provider = new Web3.providers.HttpProvider('http://localhost:8545');
+            App.web3Provider = new Web3.providers.HttpProvider('http://localhost:9545');
         }
 
         console.log('getMetamaskAccountID');
@@ -102,8 +102,8 @@ App = {
 
             web3.eth.defaultAccount = web3.eth.accounts[0];
             
-            App.fetchItemBufferOne();
-            App.fetchItemBufferTwo();
+            // App.fetchItemBufferOne();
+            // App.fetchItemBufferTwo();
             App.fetchEvents();
 
         });
@@ -159,27 +159,29 @@ App = {
             }
     },
 
+
+
     addActor: async(event)=>{
-        event.preventDefault();
+        
         try{
-     
-            let role = $("#menu-actors options:selected").val();
+            event.preventDefault();
+            let role = $("#menu-actors option:selected").val();
+            console.log(role)
+            let address = $("#addActor").val();
+            console.log(address);
             const instance = await App.contracts.SupplyChain.deployed();
+
             if(role === "Vigneron"){
-                let vigneron = $("#addActor").val();
-                await instance.addVigneron(vigneron, {from: App.metamaskAccountID});
+                await instance.addVigneron(address, {from: App.metamaskAccountID});
                 
             }else if(role === "Distributor"){
-                let distributor = $("#addActor").val();
-                await instance.addDistributor(distributor, {from: App.metamaskAccountID});
+                await instance.addDistributor(address, {from: App.metamaskAccountID});
                 
             }else if(role === "Retailer"){
-                let retailer = $("#addActor").val();
-                await instance.addRetailer(retailer, {from: App.metamaskAccountID});
+                await instance.addRetailer(address, {from: App.metamaskAccountID});
 
             }else {
-                let consumer = $("#addActor").val();
-                await instance.addConsumer(consumer, {from: App.metamaskAccountID});
+                await instance.addConsumer(address, {from: App.metamaskAccountID});
 
             }
             $("#addResult").text(`${role} has successfully been added`)
@@ -189,9 +191,12 @@ App = {
         }
     },
 
+
+
     checkRole: async(event)=>{
-        event.preventDefault();
+        
         try{
+            event.preventDefault();
             var address = $("#checkRole").val();
             const instance = await App.contracts.SupplyChain.deployed();
             let vig = await instance.isVigneron.call(address);
@@ -217,11 +222,13 @@ App = {
         }
     },
 
-    removeActor: (event)=>{
-        event.preventDefault();
+
+
+    removeActor: async (event)=>{
+        
         try{
-     
-            let role = $("#chainActors options:selected").val();
+            event.preventDefault();
+            let role = $("#chainActors option:selected").val();
             const instance = await App.contracts.SupplyChain.deployed();
             if(role === "Vigneron"){
                 let vigneron = $("#addActor").val();
@@ -249,15 +256,20 @@ App = {
         
     },
 
+
+
     removeModal: (event)=>{
         event.preventDefault;
         $("#fetchData").addClass("hidden");
     },
 
+
+
     viticultureItem: async(event)=> {
-        event.preventDefault();
+        
         // var processId = parseInt($(event.target).data('id'));
         try{
+            event.preventDefault();
             var upcVini = $("#upcVini").val();;
             var nameVineyard = $("#nameVineyard").val();
             var infoVineyard = $("#infoVineyard").val();
@@ -286,8 +298,9 @@ App = {
 
 
     vinifyItem: async(event)=>{
-        event.preventDefault();
+        
         try{
+            event.preventDefault();
             const instance = await App.contracts.SupplyChain.deployed()
             await instance.vinifyItem(App.upc, {from: App.metamaskAccountID});
             var vinifyOutput = "Wine has been vinified";
@@ -304,8 +317,9 @@ App = {
 
 
     elevageItem: async (event) =>{
-        event.preventDefault();
+        
         try{
+            event.preventDefault();
             const instance = await App.contracts.SupplyChain.deployed()
             await instance.elevageItem(App.upc, App.productAge, {from: App.metamaskAccountID});
 
@@ -319,10 +333,13 @@ App = {
             console.log("Error @ elevageItem: ", err.message);
         }
     },
+
+
     
     packItem: async (event) =>{
-        event.preventDefault();
+        
         try{
+            event.preventDefault();
             const instance = await App.contracts.SupplyChain.deployed()
             await instance.packItem(App.upc, {from: App.metamaskAccountID});
             var packOutput = "Item has been Packed"
@@ -335,9 +352,12 @@ App = {
         }
     },
 
+
+
     sellItem: async (event) =>{
-        event.preventDefault();
+        
         try{
+            event.preventDefault();
             var prodPrice = $("#productPrice").val();
             App.productPrice = prodPrice;
             var price = web3.toWei(prodPrice, "ether");
@@ -355,9 +375,12 @@ App = {
         }
     },
 
+
+
     buyItem: async (event) =>{
-        event.preventDefault();
+        
         try{
+            event.preventDefault();
             let upc = $("#buyItemUPC").val();
 
             const instance = await App.contracts.SupplyChain.deployed()
@@ -365,29 +388,13 @@ App = {
             console.log("@ buyItem price = ", price);
             await instance.buyItem(upc, {from: App.metamaskAccountID, value: price});
         }catch(err){
-
-        }
-
-        App.contracts.SupplyChain.deployed().then(function(instance) {
-            const walletValue = web3.toWei(3, "ether");
-            return instance.buyItem(App.upc, {from: App.metamaskAccountID, value: walletValue});
-        }).then(function(result) {
-            buyOutput = `
-                The item was has been bought.
-                Tx: ${result['logs'][0]['transactionHash']}
-            `;
-
-            $("#buyOutput").text(buyOutput);
-            console.log('buyItem',result);
-        }).catch(function(err) {
-            buyError = `
-                The buy transaction could not be completed.
-                An error occurred - see console.log for details
-            `
+            buyError = "The buy transaction could not be completed.";
             $("#buyOutput").text(buyError);
-            console.log(err.message);
-        });
+            console.log("Error @ buyItem: ", err.message);
+        }
     },
+
+
 
     shipItem: async (event) =>{
         event.preventDefault();
@@ -404,6 +411,8 @@ App = {
         }
     },
 
+
+
     receiveItem: async (event) =>{
         event.preventDefault();
         try{
@@ -418,6 +427,8 @@ App = {
             console.log("Error @ recieveItem: ", err.message);
         }
     },
+
+
 
     purchaseItem: async (event) =>{
         event.preventDefault();
@@ -434,15 +445,16 @@ App = {
         }
     },
 
-    fetchItemBufferOne: async (event) =>{
-        event.preventDefault();
+
+
+    fetchItemBufferOne: async () =>{
         App.upc = $('#upc').val();
-        console.log('upc:',App.upc);
+        console.log('upc:', App.upc);
         try{
             const instance = await App.contracts.SupplyChain.deployed()
             var res = await instance.fetchItemBufferOne.call(App.upc);
 
-            let output = `
+            let output1 = `
                 SKU: ${res[0]}
                 UPC: ${res[1]}
                 Owner ID: ${res[2]}
@@ -453,18 +465,19 @@ App = {
                 Vineyard Longitude: ${res[7]}
             `
           $("#fetchData").removeClass('hidden');
-          $("#fetchData").text(output);
+          $("#fetchData").text(output1);
+          console.log('fetchItemBufferOne: success');
         }catch(err){
             let fetchError = "Could not fetch data";
             $("#fetchData").removeClass('hidden');
             $("#fetchDataText").text(fetchError);
             console.log("Error @ fetchItemBufferOne: ", err.message);
         }
-        
     },
 
-    fetchItemBufferTwo: async (event) =>{
-        event.preventDefault();
+
+
+    fetchItemBufferTwo: async () =>{
         App.upc = $('#upc').val();
         try{
             const instance = await App.contracts.SupplyChain.deployed()
@@ -491,6 +504,8 @@ App = {
             console.log("Error @ fetchItemBufferTwo: ",err.message);
         }
     },
+
+
 
     fetchEvents: function () {
         if (typeof App.contracts.SupplyChain.currentProvider.sendAsync !== "function") {
