@@ -60,7 +60,7 @@ App = {
         }
         // If no injected web3 instance is detected, fall back to Ganache
         else {
-            App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+            App.web3Provider = new Web3.providers.HttpProvider('http://localhost:8545');
         }
 
         console.log('getMetamaskAccountID');
@@ -167,6 +167,7 @@ App = {
         var processId = parseInt($(event.target).data('id'));
 
         App.contracts.SupplyChain.deployed().then(function(instance) {
+            console.log(App.upc);
             return instance.viticultureItem(
                 App.upc, 
                 App.metamaskAccountID, 
@@ -177,15 +178,15 @@ App = {
                 App.productNotes
             );
         }).then(function(result) {
-            viticultureOutput=`
+            var viticultureOutput=`
                 Grapes have be cultivated.
-                Tx: {$result['logs'][0]['transactionHash']}
+                Tx: ${result['logs'][0]['transactionHash']}
             `;
             $("#viticultureOutput").text(viticultureOutput);
             
             console.log('viticultureItem',result);
         }).catch(function(err) {
-            viticuluredError = `
+            var viticultureError = `
                 Grape cultivation has not been initialised.
                 An error occurred - see console.log for details
             `
@@ -205,7 +206,7 @@ App = {
         }).then(function(result){
             vinifyOutput = `
                 Wine has been made.
-                Tx: {$result['logs'][0]['transactionHash']}
+                Tx: ${result['logs'][0]['transactionHash']}
             `
             $("#vinifyOutput").text(vinifyOutput);
             console.log('vinifyItem ', result);
@@ -231,7 +232,7 @@ App = {
         }).then(function(result) {
             elevageOutput = `
                 Wine has been barrel aged.
-                Tx: {$result['logs'][0]['transactionHash']}
+                Tx: ${result['logs'][0]['transactionHash']}
             `
             $("#elevageOutput").text(elevageOutput);
             console.log('elevageItem',result);
@@ -254,7 +255,7 @@ App = {
         }).then(function(result) {
             packOutput = `
                 Item has been Packed.
-                Tx: {$result['logs'][0]['transactionHash']}
+                Tx: ${result['logs'][0]['transactionHash']}
             `
             $("#packOutput").text(packOutput);
             console.log('packItem',result);
@@ -279,7 +280,7 @@ App = {
         }).then(function(result) {
             forSaleOutput = `
                 Item is now for sale.
-                Tx: {$result['logs'][0]['transactionHash']}
+                Tx: ${result['logs'][0]['transactionHash']}
             `
             $("#forSaleOutput").text(forSaleOutput);
             console.log('sellItem',result);
@@ -303,7 +304,7 @@ App = {
         }).then(function(result) {
             buyOutput = `
                 The item was has been bought.
-                Tx: {$result['logs'][0]['transactionHash']}
+                Tx: ${result['logs'][0]['transactionHash']}
             `;
 
             $("#buyOutput").text(buyOutput);
@@ -327,7 +328,7 @@ App = {
         }).then(function(result) {
             shipOutput = `
                 Item has been marked as shipped.
-                Tx: {$result['logs'][0]['transactionHash']}
+                Tx: ${result['logs'][0]['transactionHash']}
             `
             $("#shipOutput").text(shipOutput);
             console.log('shipItem',result);
@@ -350,7 +351,7 @@ App = {
         }).then(function(result) {
             receiveOutput = `
                 Item has been received by retailer.
-                Tx: {$result['logs'][0]['transactionHash']}
+                Tx: ${result['logs'][0]['transactionHash']}
             `
             $("#receiveOutput").text(receiveOutput);
             console.log('receiveItem',result);
@@ -373,7 +374,7 @@ App = {
         }).then(function(result) {
             purchaseOutput = `
                 Item has been purchased by consumer.
-                Tx: {$result['logs'][0]['transactionHash']}
+                Tx: ${result['logs'][0]['transactionHash']}
             `
             $("#purchaseOutput").text(purchaseOutput);
             console.log('purchaseItem',result);
@@ -413,8 +414,9 @@ App = {
                 Vineyard Latitude: ${originVineyardLatitude}
                 Vineyard Longitude: ${originVineyardLongitude}
             `
+          $("#fetchData1").removeClass('hidden');
           $("#fetchData1").text(fetchOutput1);
-          $("#fetchData2").removeClass('hidden');
+          
           console.log('fetchItemBufferOne', result);
         }).catch(function(err) {
             fetchError1 = `
@@ -451,8 +453,10 @@ App = {
                 Retailer ID: ${retailerID}
                 Consumer ID: ${consumerID}
             `;
-          $("#fetchData2").text(fetchOutput2);
+
           $("#fetchData2").removeClass('hidden');
+          $("#fetchData2").text(fetchOutput2);
+          
           console.log('fetchItemBufferTwo', result);
         }).catch(function(err) {
             fetchError2 = `
