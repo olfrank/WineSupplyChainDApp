@@ -182,17 +182,46 @@ App = {
                 await instance.addConsumer(consumer, {from: App.metamaskAccountID});
 
             }
+            $("#addResult").text(`${role} has successfully been added`)
             console.log(`${role} has successfully been added`);
         }catch(err){
             console.log("Error @ addActor: ", err.message)
         }
     },
 
-    removeModal: (event)=>{
+    checkRole: async(event)=>{
+        event.preventDefault();
+        try{
+            var address = $("#checkRole").val();
+            const instance = await App.contracts.SupplyChain.deployed();
+            let vig = await instance.isVigneron.call(address);
+            let dis = await instance.isDistributor.call(address);
+            let ret = await instance.isRetailer.call(address);
+            let con = await instance.isConsumer.call(address);
+            var role;
+            if(vig){
+                role = "Vigneron"
+            }else if(dis){
+                role = "Distributor"
+            }else if(ret){
+                role = "Retailer"
+            }else if(con){
+                role = "Consumer"
+            }else{
+                $("#hasRole").val("Your address is not registered with any roles")
+            }
+
+            $("#hasRole").val(role);
+        }catch(err){
+            console.log("Error @ checkRole: ", err.message)
+        }
+    },
+
+    removeActor: (event)=>{
         event.preventDefault();
         try{
      
-            let role = $("#menu-actors options:selected").val();
+            let role = $("#chainActors options:selected").val();
             const instance = await App.contracts.SupplyChain.deployed();
             if(role === "Vigneron"){
                 let vigneron = $("#addActor").val();
@@ -211,12 +240,18 @@ App = {
                 await instance.renounceConsumer(consumer, {from: App.metamaskAccountID});
 
             }
+            $("#removeResult").text(`${role} has successfully been removed`)
             console.log(`${role} has successfully been removed`);
-            
+
         }catch(err){
             console.log("Error @ removeActor: ", err.message)
         }
         
+    },
+
+    removeModal: (event)=>{
+        event.preventDefault;
+        $("#fetchData").addClass("hidden");
     },
 
     viticultureItem: async(event)=> {
