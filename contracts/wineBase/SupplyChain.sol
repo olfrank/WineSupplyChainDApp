@@ -302,6 +302,10 @@ contract SupplyChain is Ownable, ConsumerRole, DistributorRole, RetailerRole, Vi
   
   //**** GETTER Functions **** 
 
+  function getProductPrice(uint256 _upc) public view returns(uint256 price){
+    return items[_upc].productPrice;
+  }
+
   function fetchItemBufferOne(uint _upc) public view returns 
   ( uint    itemSKU,
     uint    itemUPC,

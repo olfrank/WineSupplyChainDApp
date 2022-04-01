@@ -78,7 +78,7 @@ App = {
                 console.log('Error:',err);
                 return;
             }
-            console.log('getMetaskID:',res);
+            // console.log('getMetaskID:',res);
             App.metamaskAccountID = res[0];
 
         })
@@ -95,10 +95,10 @@ App = {
             App.contracts.SupplyChain = TruffleContract(SupplyChainArtifact);
             App.contracts.SupplyChain.setProvider(App.web3Provider);
 
-            console.log("web3: ", web3);
-            console.log("web3 eth: ", web3.eth);
-            console.log("web3 eth defaultAccount: ", web3.eth.defaultAccount);
-            console.log("web3 eth accounts: ", web3.eth.accounts);
+            // console.log("web3: ", web3);
+            // console.log("web3 eth: ", web3.eth);
+            // console.log("web3 eth defaultAccount: ", web3.eth.defaultAccount);
+            // console.log("web3 eth accounts: ", web3.eth.accounts);
 
             web3.eth.defaultAccount = web3.eth.accounts[0];
             
@@ -121,182 +121,164 @@ App = {
         App.getMetaskAccountID();
 
         var processId = parseInt($(event.target).data('id'));
-        console.log('processId',processId);
+        // console.log('processId',processId);
 
         App.readForm();
 
         switch(processId) {
             case 1:
                 return await App.viticultureItem(event);
-                break;
             case 2:
                 return await App.vinifyItem(event);
-                break;
             case 3:
                 return await App.elevageItem(event);
-                break;
             case 4:
                 return await App.packItem(event);
-                break;
             case 5:
                 return await App.sellItem(event);
-                break;
             case 6:
                 return await App.buyItem(event);
-                break;
             case 7:
                 return await App.shipItem(event);
-                break;
             case 8:
                 return await App.receiveItem(event);
-                break;
             case 9:
                 return await App.purchaseItem(event);
-                break;
             case 10:
                 return await App.fetchItemBufferOne(event);
-                break;
             case 11:
                 return await App.fetchItemBufferTwo(event);
-                break;
+            case 12:
+                return App.removeModal(event);
             }
     },
 
-    viticultureItem: function(event) {
+    removeModal: (event)=>{
         event.preventDefault();
-        var processId = parseInt($(event.target).data('id'));
+        try{
+            $("#fetchData").addClass("hidden");
+            // $(".btn-exit").click(function(){
+            //     $("#fetchData").addClass("hidden");
+            // })
+        }catch(err){
+            console.log("removeModal: ", err.message);
+        }
+        
+    },
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
-            console.log(App.upc);
-            return instance.viticultureItem(
-                App.upc, 
-                App.metamaskAccountID, 
-                App.originVineyardName, 
-                App.originVineyardInformation, 
-                App.originVineyardLatitude, 
-                App.originVineyardLongitude, 
-                App.productNotes
-            );
-        }).then(function(result) {
-            var viticultureOutput=`
-                Grapes have be cultivated.
-                Tx: ${result['logs'][0]['transactionHash']}
-            `;
-            $("#viticultureOutput").text(viticultureOutput);
+    viticultureItem: async(event)=> {
+        event.preventDefault();
+        // var processId = parseInt($(event.target).data('id'));
+        try{
+            var upcVini = $("#upcVini").val();;
+            var nameVineyard = $("#nameVineyard").val();
+            var infoVineyard = $("#infoVineyard").val();
+            var latVineyard = $("#latVineyard").val();
+            var longVineyard = $("#longVineyard").val();
+            var prodNotes = $("#prodNotes").val();
             
-            console.log('viticultureItem',result);
-        }).catch(function(err) {
-            var viticultureError = `
-                Grape cultivation has not been initialised.
-                An error occurred - see console.log for details
-            `
-            $("#viticultureOutput").text(viticultureError);
-            console.log(err.message);
-        });
-    },
-
-    vinifyItem: function(event){
-        event.preventDefault();
-        var processId = parseInt($(event.target).data('id'));
-
-        App.contracts.SupplyChain.deployed().then(function(instance){
-            return instance.vinifyItem(
-                App.upc, {from: App.metamaskAccountID}
+            const instance = await App.contracts.SupplyChain.deployed();
+            await instance.viticultureItem(
+                upcVini, 
+                App.metamaskAccountID, 
+                nameVineyard, 
+                infoVineyard, 
+                latVineyard, 
+                longVineyard, 
+                prodNotes,
+                {from: App.metamaskAccountID}
             );
-        }).then(function(result){
-            vinifyOutput = `
-                Wine has been made.
-                Tx: ${result['logs'][0]['transactionHash']}
-            `
-            $("#vinifyOutput").text(vinifyOutput);
-            console.log('vinifyItem ', result);
-        }).catch(function(err){
-            vinifyError = `
-                Vinification has not bee initialised.
-                An error occurred - see console.log for details
-            `
-            $("#vinifyOutput").text(vinifyError);
-            console.log(err.message);
-        })
-    },
 
-    elevageItem: function (event) {
-        event.preventDefault();
-        var processId = parseInt($(event.target).data('id'));
-
-        App.contracts.SupplyChain.deployed().then(function(instance) {
-            return instance.elevageItem(
-                App.upc, 
-                App.productAge, 
-                {from: App.metamaskAccountID});
-        }).then(function(result) {
-            elevageOutput = `
-                Wine has been barrel aged.
-                Tx: ${result['logs'][0]['transactionHash']}
-            `
-            $("#elevageOutput").text(elevageOutput);
-            console.log('elevageItem',result);
-        }).catch(function(err) {
-            elevageError = `
-                Elevage stage has not been initialised.
-                An error occurred - see console.log for details
-            `
-            $("#elevageOutput").text(elevageError);
-            console.log(err.message);
-        });
+        }catch(err){
+            console.log("Error @ viticultureItem: ", err.message);
+        }
+        
     },
     
-    packItem: function (event) {
-        event.preventDefault();
-        var processId = parseInt($(event.target).data('id'));
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
-            return instance.packItem(App.upc, {from: App.metamaskAccountID});
-        }).then(function(result) {
-            packOutput = `
-                Item has been Packed.
-                Tx: ${result['logs'][0]['transactionHash']}
-            `
+
+    vinifyItem: async(event)=>{
+        event.preventDefault();
+        try{
+            const instance = await App.contracts.SupplyChain.deployed()
+            await instance.vinifyItem(App.upc, {from: App.metamaskAccountID});
+            var vinifyOutput = "Wine has been vinified";
+            $("#vinifyOutput").text(vinifyOutput);
+            console.log('vinifyItem: ', vinifyOutput);
+
+        }catch(err){
+            var vinifyError = "Vinification could not be processed"
+            $("#vinifyOutput").text(vinifyError);
+            console.log("Error @ vinifyItem: ", err.message);
+        }
+    },
+
+
+
+    elevageItem: async (event) =>{
+        event.preventDefault();
+        try{
+            const instance = await App.contracts.SupplyChain.deployed()
+            await instance.elevageItem(App.upc, App.productAge, {from: App.metamaskAccountID});
+
+            var elevageOutput = "Wine has been barrel aged."
+            $("#elevageOutput").text(elevageOutput);
+            console.log('elevageItem: ', elevageOutput);
+
+        }catch(err){
+            var elevageError = "Elevage transaction could not be processed"
+            $("#elevageOutput").text(elevageError);
+            console.log("Error @ elevageItem: ", err.message);
+        }
+    },
+    
+    packItem: async (event) =>{
+        event.preventDefault();
+        try{
+            const instance = await App.contracts.SupplyChain.deployed()
+            await instance.packItem(App.upc, {from: App.metamaskAccountID});
+            var packOutput = "Item has been Packed"
             $("#packOutput").text(packOutput);
-            console.log('packItem',result);
-        }).catch(function(err) {
-            packError = `
-                Item has not been packed.
-                An error occurred - see console.log for details
-            `
+            console.log('packItem: ', packOutput);
+        }catch(err){
+            var packError = "Pack Item transaction could not be processed"
             $("#packOutput").text(packError);
-            console.log(err.message);
-        });
+            console.log("Error @ packItem: ",err.message);
+        }
     },
 
-    sellItem: function (event) {
+    sellItem: async (event) =>{
         event.preventDefault();
-        var processId = parseInt($(event.target).data('id'));
+        try{
+            var prodPrice = $("#productPrice").val();
+            App.productPrice = prodPrice;
+            var price = web3.toWei(prodPrice, "ether");
+            const instance = await App.contracts.SupplyChain.deployed();
+            await instance.sellItem(App.upc, price, {from: App.metamaskAccountID});
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
-            const productPrice = web3.toWei(1, "ether");
-            console.log('productPrice',productPrice);
-            return instance.sellItem(App.upc, App.productPrice, {from: App.metamaskAccountID});
-        }).then(function(result) {
-            forSaleOutput = `
-                Item is now for sale.
-                Tx: ${result['logs'][0]['transactionHash']}
-            `
+            let forSaleOutput = "Item is now for sale"
             $("#forSaleOutput").text(forSaleOutput);
-            console.log('sellItem',result);
-        }).catch(function(err) {
-            forSaleError = `
-                Item could not be marked as for sale.
-                An error occurred - see console.log for details
-            `;
+            console.log('sellItem: ', forSaleOutput);
+
+        }catch(err){
+            let forSaleError = "Sell Item could not be marked for sale, transaction error";
             $("#forSaleOutput").text(forSaleError);
-            console.log(err.message);
-        });
+        console.log("Error @ sellItem: ", err.message);
+        }
     },
 
-    buyItem: function (event) {
+    buyItem: async (event) =>{
         event.preventDefault();
-        var processId = parseInt($(event.target).data('id'));
+        try{
+            let upc = $("#buyItemUPC").val();
+
+            const instance = await App.contracts.SupplyChain.deployed()
+            var price = await instance.getProductPrice(upc, {from: App.metamaskAccountID});
+            console.log("@ buyItem price = ", price);
+            await instance.buyItem(upc, {from: App.metamaskAccountID, value: price});
+        }catch(err){
+
+        }
 
         App.contracts.SupplyChain.deployed().then(function(instance) {
             const walletValue = web3.toWei(3, "ether");
@@ -319,153 +301,107 @@ App = {
         });
     },
 
-    shipItem: function (event) {
+    shipItem: async (event) =>{
         event.preventDefault();
-        var processId = parseInt($(event.target).data('id'));
-
-        App.contracts.SupplyChain.deployed().then(function(instance) {
-            return instance.shipItem(App.upc, {from: App.metamaskAccountID});
-        }).then(function(result) {
-            shipOutput = `
-                Item has been marked as shipped.
-                Tx: ${result['logs'][0]['transactionHash']}
-            `
+        try{
+            const instance = await App.contracts.SupplyChain.deployed()
+            await instance.shipItem(App.upc, {from: App.metamaskAccountID});
+            let shipOutput = "Item has been marked as shipped";
             $("#shipOutput").text(shipOutput);
-            console.log('shipItem',result);
-        }).catch(function(err) {
-            shipError = `
-                The item could not be marked as shipped.
-                An error occurred - see console.log for details
-            `
+            console.log('shipItem', shipOutput);
+        }catch(err){
+            let shipError = "The item could not be marked as shipped"
             $("#shipOutput").text(shipError);
-            console.log(err.message);
-        });
+            console.log("Error @ shipItem: ", err.message);
+        }
     },
 
-    receiveItem: function (event) {
+    receiveItem: async (event) =>{
         event.preventDefault();
-        var processId = parseInt($(event.target).data('id'));
-
-        App.contracts.SupplyChain.deployed().then(function(instance) {
-            return instance.receiveItem(App.upc, {from: App.metamaskAccountID});
-        }).then(function(result) {
-            receiveOutput = `
-                Item has been received by retailer.
-                Tx: ${result['logs'][0]['transactionHash']}
-            `
+        try{
+            const instance = await App.contracts.SupplyChain.deployed()
+            await instance.receiveItem(App.upc, {from: App.metamaskAccountID});
+            receiveOutput = "Item has been received by retailer"
             $("#receiveOutput").text(receiveOutput);
-            console.log('receiveItem',result);
-        }).catch(function(err) {
-            receiveError = `
-                Item has not been received.
-                An error occurred - see console.log for details
-            `
+            console.log('receiveItem: ', receiveOutput);
+        }catch(err){
+            receiveError = "Item has not been received"
             $("#receiveOutput").text(receiveError);
-            console.log(err.message);
-        });
+            console.log("Error @ recieveItem: ", err.message);
+        }
     },
 
-    purchaseItem: function (event) {
+    purchaseItem: async (event) =>{
         event.preventDefault();
-        var processId = parseInt($(event.target).data('id'));
-
-        App.contracts.SupplyChain.deployed().then(function(instance) {
-            return instance.purchaseItem(App.upc, {from: App.metamaskAccountID});
-        }).then(function(result) {
-            purchaseOutput = `
-                Item has been purchased by consumer.
-                Tx: ${result['logs'][0]['transactionHash']}
-            `
-            $("#purchaseOutput").text(purchaseOutput);
-            console.log('purchaseItem',result);
-        }).catch(function(err) {
-            purchaseError = `
-                Item could not be purchased.
-                An error occurred - see console.log for details
-            `
+        try{
+            var upc = $("#purchaseItemUPC").val();
+            const instance = await App.contracts.SupplyChain.deployed()
+            var price = await instance.getProductPrice(upc, {from: App.metamaskAccountID});
+            console.log("@ purchaseItem price = ", price);
+            await instance.purchaseItem(upc, {from: App.metamaskAccountID, value: price});
+        }catch(err){
+            let purchaseError = "Item could not be purchased, transaction failed"
             $("#purchaseOutput").text(purchaseError);
-            console.log(err.message);
-        });
+            console.log("Error @ purchaseItem: ", err.message);
+        }
     },
 
-    fetchItemBufferOne: function () {
+    fetchItemBufferOne: async (event) =>{
+        event.preventDefault();
         App.upc = $('#upc').val();
-        console.log('upc',App.upc);
+        console.log('upc:',App.upc);
+        try{
+            const instance = await App.contracts.SupplyChain.deployed()
+            var res = await instance.fetchItemBufferOne.call(App.upc);
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
-          return instance.fetchItemBufferOne(App.upc);
-        }).then(function(result) {
-            let [sku, 
-                upc, 
-                ownerID, 
-                originVigneronID, 
-                originVineyardName, 
-                originVineyardInformation, 
-                originVineyardLatitude, 
-                originVineyardLongitude] = result;
-
-            let fetchOutput1 = `
-                SKU: ${sku}
-                UPC: ${upc}
-                Owner ID: ${ownerID}
-                Vigneron ID: ${originVigneronID}
-                Vineyard Name: ${originVineyardName}
-                Vineyard Information: ${originVineyardInformation}
-                Vineyard Latitude: ${originVineyardLatitude}
-                Vineyard Longitude: ${originVineyardLongitude}
+            let output = `
+                SKU: ${res[0]}
+                UPC: ${res[1]}
+                Owner ID: ${res[2]}
+                Vigneron ID: ${res[3]}
+                Vineyard Name: ${res[4]}
+                Vineyard Information: ${res[5]}
+                Vineyard Latitude: ${res[6]}
+                Vineyard Longitude: ${res[7]}
             `
-          $("#fetchData1").removeClass('hidden');
-          $("#fetchData1").text(fetchOutput1);
-          
-          console.log('fetchItemBufferOne', result);
-        }).catch(function(err) {
-            fetchError1 = `
-                Could not fetch data.
-                An error occurred - see console.log for details
-            `
-            $("#fetchData1").text(fetchError1);
-          console.log(err.message);
-        });
+          $("#fetchData").removeClass('hidden');
+          $("#fetchData").text(output);
+        }catch(err){
+            let fetchError = "Could not fetch data";
+            $("#fetchData").removeClass('hidden');
+            $("#fetchDataText").text(fetchError);
+            console.log("Error @ fetchItemBufferOne: ", err.message);
+        }
+        
     },
 
-    fetchItemBufferTwo: function () {
-        App.contracts.SupplyChain.deployed().then(function(instance) {
-          return instance.fetchItemBufferTwo.call(App.upc);
-        }).then(function(result) {
-            let [sku, 
-                upc, 
-                productID, 
-                productAge, 
-                productNotes,
-                productPrice, 
-                distributorID, 
-                retailerID, 
-                consumerID] = result;
+    fetchItemBufferTwo: async (event) =>{
+        event.preventDefault();
+        App.upc = $('#upc').val();
+        try{
+            const instance = await App.contracts.SupplyChain.deployed()
+            var res = await instance.fetchItemBufferTwo.call(App.upc);
 
-            fetchOutput2 = `
-                SKU: ${sku}
-                UPC: ${upc}
-                Product ID: ${productID}
-                Product Age: ${productAge}
-                Product Notes: ${productNotes}
-                Product Price: ${productPrice}
-                Distributor ID: ${distributorID}
-                Retailer ID: ${retailerID}
-                Consumer ID: ${consumerID}
+            var output = `
+                SKU: ${res[0]}
+                UPC: ${res[1]}
+                Product ID: ${res[2]}
+                Product Age: ${res[3]}
+                Product Notes: ${res[4]}
+                Product Price: ${res[5]}
+                Item State: ${res[6]}
+                Distributor ID: ${res[7]}
+                Retailer ID: ${res[8]}
+                Consumer ID: ${res[9]}
             `;
-
-          $("#fetchData2").removeClass('hidden');
-          $("#fetchData2").text(fetchOutput2);
-          
-          console.log('fetchItemBufferTwo', result);
-        }).catch(function(err) {
-            fetchError2 = `
-                Could not fetch data.
-                An error occurred - see console.log for details.
-            `
-            $("#fetchData2").text(fetchError2);
-          console.log(err.message);
-        });
+            $("#fetchData").removeClass('hidden');
+            $("#fetchDataText").text(output);
+            console.log('fetchItemBufferTwo: success');
+        }catch(err){
+            let fetchError2 = "Could not fetch data";
+            $("#fetchData").text(fetchError2);
+            console.log("Error @ fetchItemBufferTwo: ",err.message);
+        }
     },
 
     fetchEvents: function () {

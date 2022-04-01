@@ -57,7 +57,7 @@
         
     </div>
 
-    <div id="ftc-viticulture">
+    <!-- <div id="ftc-viticulture"> -->
         <h2 data-aos="fade-right" id="form-title">Wine Details</h2>
         <div  data-aos="fade-right" data-aos-duration="1000" data-aos-offset="500" class="form-group">
             <div>
@@ -80,10 +80,21 @@
                 <button class="btn-fetchTwo" id="button" type="button" data-id="11">Fetch Product Data</button>
                 <p id='fetchOutput2' style="white-space: pre-line"></p>
             </div>
-            <div class = "data-modal hidden" id="fetchData1" style="white-space: pre-line"></div>
-            <div class = "data-modal hidden" id="fetchData2" style="white-space: pre-line"></div>
+            <!-- <div class = "data-modal hidden" id="fetchData" style="white-space: pre-line">
+                <button class = "btn-exit" type="button">X</button>
+                <p id="fetchDataText">
+
+                </p>
+                
+            </div> -->
+            <div class = "data-modal hidden" id="fetchData"  data-id="12" style="white-space: pre-line">
+                <p id="fetchDataText" >
+
+                </p>
+            </div>
             
         </div>
+        
 
 
         
@@ -105,6 +116,13 @@
                 Vigneron
                 <br><br>
                 <button class="btn-viticulture" id="button" type="button" data-id="1">Viticulture*</button>
+                <input type="number" id="upcVini" placeholder="UPC">
+                <input type="text" id="nameVineyard" placeholder="Vineyard Name">
+                <input type="text" id="infoVineyard" placeholder="Information About Vinyard, e.g., Country/Region">
+                <input type="text" id="latVineyard" placeholder="Latitude of Vineyard">
+                <input type="text" id="longVineyard" placeholder="Longitude of Vineyard">
+                <input type="text" id="prodNotes" placeholder="Product Notes, e.g., Flavour/Aroma">
+
                 <p id='viticultureOutput' style="white-space: pre-line"></p>
 
                 <button class="btn-viticulture" id="button" type="button" data-id="2">Vinify*</button>
@@ -117,8 +135,8 @@
                 <button class="btn-pack" id="button" type="button" data-id="4">Item Packed</button>
                 <p id='packOutput' style="white-space: pre-line"></p>
 
-                <button class="btn-forsale" id="button" type="button" data-id="5">ForSale</button>
-                <input type="number" id="productPrice" name="productPrice" class = "numInput" placeholder="10" >ETH
+                <button class="btn-forsale" id="button" type="button" data-id="5">For Sale</button>
+                <input type="number" id="productPrice" name="productPrice" class = "numInput" placeholder="1" >ETH
                 <p id='forSaleOutput' style="white-space: pre-line"></p>
             </div>
             <br>
@@ -133,6 +151,7 @@
                 Retailer
                 <br><br>
                 <button class="btn-buy" id="button" type="button" data-id="6">Buy Item</button>
+                <input type="number" id="buyItemUPC" placeholder="UPC">
                 <p id='buyOutput' style="white-space: pre-line"></p>
 
                 <button class="btn-receive" id="button" type="button" data-id="8">Item Recieved</button>
@@ -143,13 +162,28 @@
                 Consumer
                 <br><br>
                 <button class="btn-purchase" id="button" type="button" data-id="9">Purchase Item</button>
+                <input type="number" id="purchaseItemUPC" placeholder="UPC">
                 <p id='purchaseOutput' style="white-space: pre-line"></p>
             </div>
 
         </div>
-</main>
 
+        <h2 data-aos="fade-right" id="form-title">ADMIN SECTION: Update Actors</h2>
+        <div class = "form-group" data-aos="fade-right" data-aos-duration="1000" data-aos-offset="500" >
+            <div>
+                <select id="chainActors">
+                    <option value="Vigneron">Vigneron</option>
+                    <option value="Distributor">Distributor</option>
+                    <option value="Retailer">Retailer</option>
+                    <option value="Consumer">Consumer</option>
+                </select>
+            </div>
+        </div>
+</main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    
+
     
     <script src="node_modules/web3/dist/web3.min.js"></script>
     <!-- <script src="src/truffle-contract.js"></script> -->
@@ -159,6 +193,12 @@
     <script>
         AOS.init();
       </script>
+
+<!-- <script>
+    $(".btn-exit").click(function(){
+        $("#fetchData").addClass("hidden");
+    })
+</script> -->
 </body>
 
 </html>

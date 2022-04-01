@@ -293,3 +293,13 @@ body {
     width: 20%;
     font-size: 18px;
   }
+  .btn-exit{
+    padding: 10px;
+    
+    color: rgb(78, 32, 32);
+    border: none;
+    border-radius: 5px;
+    top:0;
+    margin-bottom: auto;
+
+  }
