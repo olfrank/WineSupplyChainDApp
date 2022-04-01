@@ -150,18 +150,71 @@ App = {
                 return await App.fetchItemBufferTwo(event);
             case 12:
                 return App.removeModal(event);
+            case 13:
+                return await App.addActor(event);
+            case 14: 
+                return await App.removeActor(event);
+            case 15:
+                return await App.checkRole(event);
             }
+    },
+
+    addActor: async(event)=>{
+        event.preventDefault();
+        try{
+     
+            let role = $("#menu-actors options:selected").val();
+            const instance = await App.contracts.SupplyChain.deployed();
+            if(role === "Vigneron"){
+                let vigneron = $("#addActor").val();
+                await instance.addVigneron(vigneron, {from: App.metamaskAccountID});
+                
+            }else if(role === "Distributor"){
+                let distributor = $("#addActor").val();
+                await instance.addDistributor(distributor, {from: App.metamaskAccountID});
+                
+            }else if(role === "Retailer"){
+                let retailer = $("#addActor").val();
+                await instance.addRetailer(retailer, {from: App.metamaskAccountID});
+
+            }else {
+                let consumer = $("#addActor").val();
+                await instance.addConsumer(consumer, {from: App.metamaskAccountID});
+
+            }
+            console.log(`${role} has successfully been added`);
+        }catch(err){
+            console.log("Error @ addActor: ", err.message)
+        }
     },
 
     removeModal: (event)=>{
         event.preventDefault();
         try{
-            $("#fetchData").addClass("hidden");
-            // $(".btn-exit").click(function(){
-            //     $("#fetchData").addClass("hidden");
-            // })
+     
+            let role = $("#menu-actors options:selected").val();
+            const instance = await App.contracts.SupplyChain.deployed();
+            if(role === "Vigneron"){
+                let vigneron = $("#addActor").val();
+                await instance.renounceVigneron(vigneron, {from: App.metamaskAccountID});
+                
+            }else if(role === "Distributor"){
+                let distributor = $("#addActor").val();
+                await instance.renounceDistributor(distributor, {from: App.metamaskAccountID});
+                
+            }else if(role === "Retailer"){
+                let retailer = $("#addActor").val();
+                await instance.renounceRetailer(retailer, {from: App.metamaskAccountID});
+
+            }else {
+                let consumer = $("#addActor").val();
+                await instance.renounceConsumer(consumer, {from: App.metamaskAccountID});
+
+            }
+            console.log(`${role} has successfully been removed`);
+            
         }catch(err){
-            console.log("removeModal: ", err.message);
+            console.log("Error @ removeActor: ", err.message)
         }
         
     },

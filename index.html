@@ -171,12 +171,31 @@
         <h2 data-aos="fade-right" id="form-title">ADMIN SECTION: Update Actors</h2>
         <div class = "form-group" data-aos="fade-right" data-aos-duration="1000" data-aos-offset="500" >
             <div>
-                <select id="chainActors">
+                Choose Actor: 
+                <select class="menu-actors" id="chainActors">
                     <option value="Vigneron">Vigneron</option>
                     <option value="Distributor">Distributor</option>
                     <option value="Retailer">Retailer</option>
                     <option value="Consumer">Consumer</option>
                 </select>
+                <br><br>
+
+                Add Address 
+                <input type="text" id="addActor" placeholder="0x9602...A88f">
+                <button type="button" id="btn-addActor" data-id="13">Add</button>
+                <br><br>
+
+                Remove Address 
+                <input type="text" id="addActor" placeholder="0x9602...A88f">
+                <button type="button" id="btn-removeActor" data-id="14">Remove</button>
+                <br><br>
+
+                Check Address 
+                <input type="text" id="checkRole" placeholder="0x9602...A88f">
+                <button type="button" id="btn-has-role" data-id="15">Check</button>
+                <input type="text" disabled="true" id="hasRole">
+                
+
             </div>
         </div>
 </main>
