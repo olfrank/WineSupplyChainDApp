@@ -60,7 +60,7 @@ App = {
         }
         // If no injected web3 instance is detected, fall back to Ganache
         else {
-            App.web3Provider = new Web3.providers.HttpProvider('http://localhost:9545');
+            App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
         }
 
         console.log('getMetamaskAccountID');
@@ -165,22 +165,26 @@ App = {
         
         try{
             event.preventDefault();
-            let role = $("#menu-actors option:selected").val();
+            let role = $("#chainActors option:selected").val();
             console.log(role)
             let address = $("#addActor").val();
             console.log(address);
             const instance = await App.contracts.SupplyChain.deployed();
 
             if(role === "Vigneron"){
+                role = "Vigneron";
                 await instance.addVigneron(address, {from: App.metamaskAccountID});
                 
             }else if(role === "Distributor"){
+                role = "Distributor";
                 await instance.addDistributor(address, {from: App.metamaskAccountID});
                 
             }else if(role === "Retailer"){
+                role = "Retailer";
                 await instance.addRetailer(address, {from: App.metamaskAccountID});
 
             }else {
+                role = "Consumer"
                 await instance.addConsumer(address, {from: App.metamaskAccountID});
 
             }
@@ -270,7 +274,7 @@ App = {
         // var processId = parseInt($(event.target).data('id'));
         try{
             event.preventDefault();
-            var upcVini = $("#upcVini").val();;
+            App.upc = $("#upcStage").val();
             var nameVineyard = $("#nameVineyard").val();
             var infoVineyard = $("#infoVineyard").val();
             var latVineyard = $("#latVineyard").val();
@@ -279,7 +283,7 @@ App = {
             
             const instance = await App.contracts.SupplyChain.deployed();
             await instance.viticultureItem(
-                upcVini, 
+                App.upc, 
                 App.metamaskAccountID, 
                 nameVineyard, 
                 infoVineyard, 
@@ -288,6 +292,7 @@ App = {
                 prodNotes,
                 {from: App.metamaskAccountID}
             );
+            $("#viticultureOutput").text("Wine has been marked as made");
 
         }catch(err){
             console.log("Error @ viticultureItem: ", err.message);
@@ -301,6 +306,7 @@ App = {
         
         try{
             event.preventDefault();
+            App.upc = $("#upcStage").val();
             const instance = await App.contracts.SupplyChain.deployed()
             await instance.vinifyItem(App.upc, {from: App.metamaskAccountID});
             var vinifyOutput = "Wine has been vinified";
@@ -320,6 +326,7 @@ App = {
         
         try{
             event.preventDefault();
+            App.upc = $("#upcStage").val();
             const instance = await App.contracts.SupplyChain.deployed()
             await instance.elevageItem(App.upc, App.productAge, {from: App.metamaskAccountID});
 
@@ -340,6 +347,7 @@ App = {
         
         try{
             event.preventDefault();
+            App.upc = $("#upcStage").val();
             const instance = await App.contracts.SupplyChain.deployed()
             await instance.packItem(App.upc, {from: App.metamaskAccountID});
             var packOutput = "Item has been Packed"
@@ -358,9 +366,10 @@ App = {
         
         try{
             event.preventDefault();
+            App.upc = $("#upcStage").val();
             var prodPrice = $("#productPrice").val();
             App.productPrice = prodPrice;
-            var price = web3.toWei(prodPrice, "ether");
+            var price = web3.utils.toWei(prodPrice, "ether");
             const instance = await App.contracts.SupplyChain.deployed();
             await instance.sellItem(App.upc, price, {from: App.metamaskAccountID});
 
@@ -371,7 +380,7 @@ App = {
         }catch(err){
             let forSaleError = "Sell Item could not be marked for sale, transaction error";
             $("#forSaleOutput").text(forSaleError);
-        console.log("Error @ sellItem: ", err.message);
+            console.log("Error @ sellItem: ", err.message);
         }
     },
 
@@ -381,12 +390,15 @@ App = {
         
         try{
             event.preventDefault();
-            let upc = $("#buyItemUPC").val();
+            App.upc = $("#upcStage").val();
 
             const instance = await App.contracts.SupplyChain.deployed()
-            var price = await instance.getProductPrice(upc, {from: App.metamaskAccountID});
-            console.log("@ buyItem price = ", price);
+            var price = await instance.getProductPrice(App.upc, {from: App.metamaskAccountID});
+            var ethPrice = web3.utils.fromWei(price, "ether");
+            
             await instance.buyItem(upc, {from: App.metamaskAccountID, value: price});
+            console.log(`upc: ${App.upc} has been bought for: ${ethPrice}`);
+            $("#buyOutput").text(`upc: ${App.upc} has been bought for: ${ethPrice}`);
         }catch(err){
             buyError = "The buy transaction could not be completed.";
             $("#buyOutput").text(buyError);
@@ -397,13 +409,14 @@ App = {
 
 
     shipItem: async (event) =>{
-        event.preventDefault();
+        
         try{
+            event.preventDefault();
+            App.upc = $("#upcStage").val();
             const instance = await App.contracts.SupplyChain.deployed()
             await instance.shipItem(App.upc, {from: App.metamaskAccountID});
-            let shipOutput = "Item has been marked as shipped";
-            $("#shipOutput").text(shipOutput);
-            console.log('shipItem', shipOutput);
+            $("#shipOutput").text(`upc ${App.upc} has been marked as shipped`);
+            console.log('shipItem', `upc ${App.upc} has been marked as shipped`);
         }catch(err){
             let shipError = "The item could not be marked as shipped"
             $("#shipOutput").text(shipError);
@@ -414,13 +427,14 @@ App = {
 
 
     receiveItem: async (event) =>{
-        event.preventDefault();
+        
         try{
+            event.preventDefault();
+            App.upc = $("#upcStage").val();
             const instance = await App.contracts.SupplyChain.deployed()
             await instance.receiveItem(App.upc, {from: App.metamaskAccountID});
-            receiveOutput = "Item has been received by retailer"
-            $("#receiveOutput").text(receiveOutput);
-            console.log('receiveItem: ', receiveOutput);
+            $("#receiveOutput").text(`upc ${App.upc} has been marked as recieved`);
+            console.log('receiveItem: ', `upc ${App.upc} has been marked as recieved`);
         }catch(err){
             receiveError = "Item has not been received"
             $("#receiveOutput").text(receiveError);
@@ -431,13 +445,18 @@ App = {
 
 
     purchaseItem: async (event) =>{
-        event.preventDefault();
+        
         try{
-            var upc = $("#purchaseItemUPC").val();
+            event.preventDefault();
+            App.upc = $("#upcStage").val();
             const instance = await App.contracts.SupplyChain.deployed()
-            var price = await instance.getProductPrice(upc, {from: App.metamaskAccountID});
-            console.log("@ purchaseItem price = ", price);
+
+            var price = await instance.getProductPrice(App.upc, {from: App.metamaskAccountID});
             await instance.purchaseItem(upc, {from: App.metamaskAccountID, value: price});
+
+            var ethPrice = web3.utils.fromWei(price, 'ether');
+            console.log(`${App.upc} has been purchased for ${ethPrice}`);
+
         }catch(err){
             let purchaseError = "Item could not be purchased, transaction failed"
             $("#purchaseOutput").text(purchaseError);
@@ -448,14 +467,15 @@ App = {
 
 
     fetchItemBufferOne: async () =>{
-        App.upc = $('#upc').val();
-        console.log('upc:', App.upc);
+        App.upc = $('#upcFetch').val();
+        // console.log('upc:', App.upc);
         try{
+            // $("#fetchData").text("");
             const instance = await App.contracts.SupplyChain.deployed()
             var res = await instance.fetchItemBufferOne.call(App.upc);
 
             let output1 = `
-                SKU: ${res[0]}
+                VINEYARD INFORMATION
                 UPC: ${res[1]}
                 Owner ID: ${res[2]}
                 Vigneron ID: ${res[3]}
@@ -466,11 +486,11 @@ App = {
             `
           $("#fetchData").removeClass('hidden');
           $("#fetchData").text(output1);
-          console.log('fetchItemBufferOne: success');
+          
         }catch(err){
             let fetchError = "Could not fetch data";
             $("#fetchData").removeClass('hidden');
-            $("#fetchDataText").text(fetchError);
+            $("#fetchData").text(fetchError);
             console.log("Error @ fetchItemBufferOne: ", err.message);
         }
     },
@@ -478,26 +498,27 @@ App = {
 
 
     fetchItemBufferTwo: async () =>{
-        App.upc = $('#upc').val();
+        App.upc = $('#upcFetch').val();
         try{
+            // $("#fetchData").text("");
             const instance = await App.contracts.SupplyChain.deployed()
             var res = await instance.fetchItemBufferTwo.call(App.upc);
 
             var output = `
-                SKU: ${res[0]}
+                PRODUCT INFORMATION
                 UPC: ${res[1]}
                 Product ID: ${res[2]}
-                Product Age: ${res[3]}
+                Product Age (Months): ${res[3]}
                 Product Notes: ${res[4]}
-                Product Price: ${res[5]}
+                Product Price (ETH): ${web3.utils.fromWei(res[5], 'ether')}
                 Item State: ${res[6]}
                 Distributor ID: ${res[7]}
                 Retailer ID: ${res[8]}
                 Consumer ID: ${res[9]}
             `;
             $("#fetchData").removeClass('hidden');
-            $("#fetchDataText").text(output);
-            console.log('fetchItemBufferTwo: success');
+            $("#fetchData").text(output);
+            
         }catch(err){
             let fetchError2 = "Could not fetch data";
             $("#fetchData").text(fetchError2);

@@ -107,6 +107,18 @@
                     cannot mark an item as received, only the retailer is allowed to do so. 
                     To update its stage enter the UPC of the product and continue to click your respective duty.
                 </p>
+                <p>
+                    ITEM STAGES: <br>
+                    0. Viticulture <br>
+                    1. Vinification <br>
+                    2. Elevage <br>
+                    3. Packed <br>
+                    4. For Sale <br>
+                    5. Sold <br>
+                    6. Shipped <br>
+                    7. Recieved <br>
+                    8. Purchased <br>
+                </p>
             </div>
             UPC
             <input type="number" class ="small" id="upc" name="upc" placeholder="1"><br>
@@ -143,6 +155,7 @@
             <div align="center" class = "actors">
                 <h3 align="center">Distributor</h3> 
                 <br><br>
+                <input type="number" class ="small" id="upcShip" placeholder="UPC">
                 <button class="btn-ship" id="button" type="button" data-id="7">Item Shipped</button>
                 <p id='shipOutput' style="white-space: pre-line"></p>
             </div>
@@ -150,8 +163,8 @@
             <div align="center" class = "actors">
                 <h3 align="center">Retailer</h3> 
                 <br><br>
-                <button class="btn-buy" id="button" type="button" data-id="6">Buy Item</button>
                 <input type="number" class ="small" id="buyItemUPC" placeholder="UPC">
+                <button class="btn-buy" id="button" type="button" data-id="6">Buy Item</button>
                 <p id='buyOutput' style="white-space: pre-line"></p>
 
                 <button class="btn-receive" id="button" type="button" data-id="8">Item Recieved</button>
