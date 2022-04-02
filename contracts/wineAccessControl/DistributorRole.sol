@@ -35,8 +35,8 @@ contract DistributorRole {
   }
 
  
-  function renounceDistributor() public {
-      _removeDistributor(msg.sender);
+  function renounceDistributor(address account) public onlyDistributor{
+      _removeDistributor(account);
   }
 
   

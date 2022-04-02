@@ -37,8 +37,8 @@ contract VigneronRole {
   }
 
   
-  function renounceVigneron() public {
-    _removeVigneron(msg.sender);
+  function renounceVigneron(address account) public onlyVigneron{
+    _removeVigneron(account);
   }
 
   

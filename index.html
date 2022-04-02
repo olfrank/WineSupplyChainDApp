@@ -71,7 +71,7 @@
             <br>
                 Universal Product Code (UPC)
             <br>
-            <input type="number" id="upc" name="upc" class = "numInput" placeholder="1"><br>
+            <input type="number" id="upcFetch" name="upc" class = "numInput" placeholder="1"><br>
             <br>
              
             <div class=button-div>
@@ -121,23 +121,23 @@
                 </p>
             </div>
             UPC
-            <input type="number" class ="small" id="upc" name="upc" placeholder="1"><br>
+            <input type="number" class ="small" id="upcStage" name="upc" placeholder="1"><br>
             <br><br>
             
             <div align="center" class = "actors">
                 <h3 align="center">Vigneron</h3>
                 <br><br>
-                <button class="btn-viticulture" id="button" type="button" data-id="1">Viticulture*</button>
-                <input type="number" class ="small" id="upcVini" placeholder="UPC">
+                
                 <input type="text" id="nameVineyard" placeholder="Vineyard Name">
                 <input type="text" id="infoVineyard" placeholder="Information About Vinyard, e.g., Country/Region">
                 <input type="text" id="latVineyard" placeholder="Latitude of Vineyard">
                 <input type="text" id="longVineyard" placeholder="Longitude of Vineyard">
                 <input type="text" id="prodNotes" placeholder="Product Notes, e.g., Flavour/Aroma">
+                <button class="btn-viticulture" id="button" type="button" data-id="1">Viticulture*</button>
 
                 <p id='viticultureOutput' style="white-space: pre-line"></p>
 
-                <button class="btn-viticulture" id="button" type="button" data-id="2">Vinify*</button>
+                <button class="btn-vinify" id="button" type="button" data-id="2">Vinify*</button>
                 <p id='vinifyOutput' style="white-space: pre-line"></p>
         
                 <button class="btn-process" id="button" type="button" data-id="3">Élevage*</button>
@@ -155,7 +155,6 @@
             <div align="center" class = "actors">
                 <h3 align="center">Distributor</h3> 
                 <br><br>
-                <input type="number" class ="small" id="upcShip" placeholder="UPC">
                 <button class="btn-ship" id="button" type="button" data-id="7">Item Shipped</button>
                 <p id='shipOutput' style="white-space: pre-line"></p>
             </div>
@@ -163,7 +162,7 @@
             <div align="center" class = "actors">
                 <h3 align="center">Retailer</h3> 
                 <br><br>
-                <input type="number" class ="small" id="buyItemUPC" placeholder="UPC">
+
                 <button class="btn-buy" id="button" type="button" data-id="6">Buy Item</button>
                 <p id='buyOutput' style="white-space: pre-line"></p>
 
@@ -176,7 +175,6 @@
                 <br><br>
                 
                 <button class="btn-purchase" id="button" type="button" data-id="9">Purchase Item</button>
-                <input type="number" class ="small" id="purchaseItemUPC" placeholder="UPC">
                 <p id='purchaseOutput' style="white-space: pre-line"></p>
             </div>
 
@@ -210,6 +208,7 @@
                 </div>
                 <br><br>
                 
+                <hr style="border-color: #000">
 
                 <div class = "actors">
                 Check Address 

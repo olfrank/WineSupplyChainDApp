@@ -130,7 +130,7 @@ body {
   input{
     width: 75%;
     padding: 12px 20px;
-    margin: 10px 0;
+    margin: 3px 0;
     font-family: 'Noto Serif', serif;
     background-color: rgb(23, 24, 23);
     border-radius: 5px;
@@ -145,6 +145,9 @@ body {
   }
   input:focus {
     border: 3px solid rgb(206, 86, 86);
+  }
+  .btn-viticulture{
+    margin-bottom: 10%;
   }
   
   button {

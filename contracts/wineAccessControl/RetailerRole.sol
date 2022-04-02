@@ -37,8 +37,8 @@ contract RetailerRole {
   }
 
   
-  function renounceRetailer() public {
-    _removeRetailer(msg.sender);
+  function renounceRetailer(address account) public onlyRetailer{
+    _removeRetailer(account);
   }
 
   

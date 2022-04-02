@@ -34,8 +34,8 @@ contract ConsumerRole {
   }
 
 
-  function renounceConsumer() public {
-    _removeConsumer(msg.sender);
+  function renounceConsumer(address account) public onlyConsumer{
+    _removeConsumer(account);
   }
 
 
