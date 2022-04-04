@@ -396,9 +396,9 @@ App = {
             var price = await instance.getProductPrice(App.upc, {from: App.metamaskAccountID});
             var ethPrice = web3.utils.fromWei(price, "ether");
             
-            await instance.buyItem(upc, {from: App.metamaskAccountID, value: price});
+            await instance.buyItem(App.upc, {from: App.metamaskAccountID, value: price});
             console.log(`upc: ${App.upc} has been bought for: ${ethPrice}`);
-            $("#buyOutput").text(`upc: ${App.upc} has been bought for: ${ethPrice}`);
+            $("#buyOutput").text(`upc: ${App.upc} has been bought for: ${ethPrice} ETH`);
         }catch(err){
             buyError = "The buy transaction could not be completed.";
             $("#buyOutput").text(buyError);
@@ -452,7 +452,7 @@ App = {
             const instance = await App.contracts.SupplyChain.deployed()
 
             var price = await instance.getProductPrice(App.upc, {from: App.metamaskAccountID});
-            await instance.purchaseItem(upc, {from: App.metamaskAccountID, value: price});
+            await instance.purchaseItem(App.upc, {from: App.metamaskAccountID, value: price});
 
             var ethPrice = web3.utils.fromWei(price, 'ether');
             console.log(`${App.upc} has been purchased for ${ethPrice}`);
@@ -528,7 +528,7 @@ App = {
 
 
 
-    fetchEvents: function () {
+    fetchEvents: async () =>{
         if (typeof App.contracts.SupplyChain.currentProvider.sendAsync !== "function") {
             App.contracts.SupplyChain.currentProvider.sendAsync = function () {
                 return App.contracts.SupplyChain.currentProvider.send.apply(
@@ -538,9 +538,10 @@ App = {
             };
         }
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
-        var events = instance.allEvents(function(err, log){
+        await App.contracts.SupplyChain.deployed().then(function(instance) {
+          instance.allEvents(function(err, log){
           if (!err)
+            console.log(log.event, log.transactionHash)
             $("#transactionHistory").append('<li>' + log.event + ' - ' + log.transactionHash + '</li>');
         });
         }).catch(function(err) {

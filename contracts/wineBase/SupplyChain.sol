@@ -260,7 +260,9 @@ contract SupplyChain is Ownable, ConsumerRole, DistributorRole, RetailerRole, Vi
   
   function shipItem(uint _upc) public onlyDistributor sold(_upc) verifyCaller(msg.sender){
     items[_upc].itemState = State.Shipped;
-
+    items[_upc].ownerID = msg.sender;
+    items[_upc].distributorID = msg.sender;
+    
     emit Shipped(_upc);
   }
 
